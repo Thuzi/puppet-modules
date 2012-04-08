@@ -16,4 +16,21 @@ class rails::config {
     require => Class[Rails::Install],
   }
 
+  # thin web server
+  
+  file {"/etc/thin":
+  ensure => directory,
+    owner => "$rails::params::username",
+    group => "$rails::params::group",
+    mode => 0755,
+  }
+  
+  file {"/etc/thin/rails.yml":
+    ensure => file,
+    owner => "$rails::params::username",
+    group => "$rails::params::group",
+    content => template("rails/thin.yml.erb"),
+    require => [ Class[Rails::Install], Package["thin"] ],
+  }
+  
 }

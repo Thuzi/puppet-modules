@@ -1,5 +1,5 @@
 define rails::dbcreate {
-    exec { "sudo -u $rails::params::username rake db:create":
+    exec { "sudo -u $rails::params::username rake db:create:all":
       path => $path,
       user => "$rails::params::username",
       cwd => "$rails::params::repository_path/app",

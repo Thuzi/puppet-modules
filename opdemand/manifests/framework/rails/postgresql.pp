@@ -3,7 +3,8 @@ class opdemand::framework::rails::postgresql {
   # require opdemand common and repo
   require opdemand::common
   require opdemand::repo::app
-
+  require opdemand::web::nginx
+  
   # initialize dynamic parameters
   class {"rails::params":
     # admin
@@ -26,11 +27,14 @@ class opdemand::framework::rails::postgresql {
     group => hiera("application/group", "ubuntu"),
     home => hiera("application/home", "/home/ubuntu"),
     repository_path => hiera("application/repository_path", "/home/ubuntu/repo"),
+    mode => hiera("application/mode", "development"),
   }
-
+  
   # include relevant classes
   include rails::install
   include rails::config
   include rails::service
+  include nginx
+  include rails::nginx
 
 }
