@@ -27,7 +27,7 @@ class opdemand::framework::rails::postgresql {
     group => hiera("application/group", "ubuntu"),
     home => hiera("application/home", "/home/ubuntu"),
     repository_path => hiera("application/repository_path", "/home/ubuntu/repo"),
-    mode => hiera("application/mode", "development"),
+    mode => hiera("application/mode", "production"),
   }
   
   # include relevant classes

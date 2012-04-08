@@ -19,5 +19,5 @@ class rails::params (
   $group = "ubuntu",
   $home = "/home/ubuntu",
   $repository_path = "/home/ubuntu/repo",
-  $mode = "development") {
+  $mode = "production") {
 }
