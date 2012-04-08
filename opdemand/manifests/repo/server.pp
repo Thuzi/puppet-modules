@@ -5,7 +5,7 @@ class opdemand::repo::server (
   $repository_provider = hiera("server/repository_provider", "git"),
   $repository_url = hiera("server/repository_url"),
   $repository_path = hiera("server/repository_path", "/var/lib/opdemand"),
-  $repository_revision = hiera("server/repository_revision", "HEAD"),
+  $repository_revision = hiera("server/repository_revision", "master"),
   $repository_owner = hiera("server/username", "root"),
   $repository_group = hiera("server/group", "root")) {
   

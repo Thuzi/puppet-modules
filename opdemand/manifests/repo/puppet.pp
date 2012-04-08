@@ -5,7 +5,7 @@ class opdemand::repo::puppet (
   $repository_provider = hiera("puppet/repository_provider", "git"),
   $repository_url = hiera("puppet/repository_url", "git://github.com/opdemand/puppet-modules.git"),
   $repository_path = hiera("puppet/repository_path", "/usr/share/puppet/modules"),
-  $repository_revision = hiera("puppet/repository_revision", "HEAD"),
+  $repository_revision = hiera("puppet/repository_revision", "master"),
   $repository_owner = hiera("puppet/username", "root"),
   $repository_group = hiera("puppet/group", "root")) {
   

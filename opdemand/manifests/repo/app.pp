@@ -6,7 +6,7 @@ class opdemand::repo::app (
   $repository_key = hiera("application/repository_key", ""),
   $repository_url = hiera("application/repository_url"),
   $repository_path = hiera("application/repository_path", "/home/ubuntu/repo"),
-  $repository_revision = hiera("application/repository_revision", "HEAD"),
+  $repository_revision = hiera("application/repository_revision", "master"),
   $repository_owner = hiera("application/username", "ubuntu"),
   $repository_group = hiera("application/group", "ubuntu")) {
 
