@@ -26,4 +26,14 @@ class rails::install {
       require => Package[$packages],
   }
 
+  # bundle install
+  exec { "sudo -u $rails::params::username bundle install":
+    path => $path,
+    cwd => "$rails::params::repository_path",
+    user => "$rails::params::username",
+    group => "$rails::params::group",
+    require => Package["bundler"],
+    subscribe => Vcsrepo[$rails::params::repository_path],
+  }
+  
 }
