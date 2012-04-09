@@ -3,7 +3,7 @@ class rails::install {
   require rails::params
 
   $packages = [ "curl", "openssl", "ruby1.9.1", "ruby1.9.1-dev", "build-essential", "libsqlite3-ruby1.9.1", "libsqlite3-dev", "rubygems", "libv8-dev"]
-  $gems = [ "bundler", "rails", "sinatra", "therubyracer", "rake", "coffee-rails", "sass-rails", "uglifier", "jquery-rails", "pg", "thin"]
+  $gems = [ "bundler", "rails", "sinatra", "therubyracer", "rake", "coffee-rails", "sass-rails", "uglifier", "jquery-rails", "pg", "thin", "activerecord"]
   $db_packages = $rails::params::database_type ? {
     postgresql => [ "libpq-dev" ],
   }
