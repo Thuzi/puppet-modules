@@ -35,5 +35,15 @@ class rails::install {
     require => Package["bundler"],
     subscribe => Vcsrepo[$rails::params::repository_path],
   }
+
+  # override databases.rake to allow `rake db:create:all` to target remote databases
+  file { "/usr/lib/ruby/gems/1.8/gems/activerecord-3.2.3/lib/active_record/railties/databases.rake":
+    ensure => present,
+    owner => "root",
+    group => "root",
+    mode => 0644,
+    source => "puppet:///modules/rails/databases.rake",
+    require => Package["activerecord"],
+  }
   
 }
