@@ -18,7 +18,6 @@ class opdemand::web::nodejs {
   # include relevant nodejs classes
   include nodejs::install
   include nodejs::config
-  include nodejs::express
   include nodejs::service
 
 }
