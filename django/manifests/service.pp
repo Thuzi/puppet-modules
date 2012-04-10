@@ -8,9 +8,11 @@ class django::service {
     provider => upstart,
     require => [ Class[Django::Install], Class[Django::Config] ],
     subscribe => Vcsrepo["$django::params::repository_path"],
-  } ->
+  }
 
-  django::syncdb {"django":} ->
+  django::syncdb {"django":
+    notify => Service["django"],
+  } ->
   django::createadmin {"django":}
 
 }
