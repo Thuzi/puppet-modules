@@ -6,6 +6,12 @@ class php::nginx ($packages = [ "php5-fpm", "php5-cgi" ],
     ensure => latest,
   }
 
+  # remove apache2 packages that are auto-installed on ubuntu
+  $apache_packages = [ "apache2.2-common", "apache2.2-bin", "apache2-utils" ]
+  package { $apache_packages:
+    ensure => absent,
+  }
+  
   nginx::resource::vhost { $name:
     ensure   => present,
     www_root => $www_root,
