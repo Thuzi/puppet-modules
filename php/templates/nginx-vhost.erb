@@ -1,0 +1,47 @@
+server {
+  listen *; 
+  
+  server_name <%= scope.lookupvar("$ec2_public_hostname") %>;
+  access_log  /var/log/nginx/access.log;
+  
+  # canonicalize codeigniter url end points
+  # if your default controller is something other than "welcome" you should change the following
+  if ($request_uri ~* ^(/welcome(/index)?|/index(.php)?)/?$)
+  {
+      rewrite ^(.*)$ / permanent;
+  }
+ 
+  # removes trailing "index" from all controllers
+  if ($request_uri ~* index/?$)
+  {
+      rewrite ^/(.*)/index/?$ /$1 permanent;
+  }
+ 
+  # removes trailing slashes (prevents SEO duplicate content issues)
+  if (!-d $request_filename)
+  {
+      rewrite ^/(.+)/$ /$1 permanent;
+  }
+
+  # removes access to "system" folder, also allows a "System.php" controller
+  if ($request_uri ~* ^/system)
+  {
+      rewrite ^/(.*)$ /index.php?/$1 last;
+      break;
+  }
+
+  # unless the request is for a valid file (image, js, css, etc.), send to bootstrap
+  if (!-e $request_filename)
+  {
+      rewrite ^/(.*)$ /index.php?/$1 last;
+      break;
+  }
+
+  location / {
+    include /etc/nginx/fastcgi_params;
+    fastcgi_pass 127.0.0.1:9000;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME /var/www$fastcgi_script_name;
+  }
+
+}
