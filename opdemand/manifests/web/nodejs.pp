@@ -12,7 +12,7 @@ class opdemand::web::nodejs {
   class {"nodejs::params":
     username => hiera("application/username", "ubuntu"),
     home => hiera("application/home", "/home/ubuntu"),
-    main => hiera("application/main", "/home/ubuntu/repo/app.js"),
+    main => hiera("application/main", "/home/ubuntu/repo/server.js"),
   }
 
   # include relevant nodejs classes
