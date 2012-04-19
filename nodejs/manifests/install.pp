@@ -19,5 +19,15 @@ class nodejs::install {
     require => Package["npm"],
     subscribe => Vcsrepo[$nodejs::params::path],
   }
-    
+
+  exec { "nodejs::coffee-script::install":
+    command => "npm install -g coffee-script",
+    cwd => $nodejs::params::path,
+    path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
+    user => "root",
+    group => "root",
+    require => Package["npm"],
+    unless => "which coffee",
+  }
+  
 }
