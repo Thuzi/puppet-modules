@@ -3,7 +3,7 @@
 	url = git://github.com/puppetlabs/puppet-vcsrepo.git
 [submodule "apt"]
 	path = apt
-	url = git://github.com/evolvingweb/puppet-apt.git
+	url = git://github.com/opdemand/puppet-apt.git
 [submodule "hiera"]
 	path = hiera
 	url = git://github.com/puppetlabs/hiera-puppet.git
