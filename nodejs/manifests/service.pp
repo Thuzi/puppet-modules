@@ -6,7 +6,7 @@ class nodejs::service {
     ensure => running,
     name => "nodejs",
     provider => upstart,
-    require => [ Package["nodejs"], File["/etc/init/nodejs.conf"] ],
+    require => [ Package["nodejs"], Class[Nodejs::Config] ],
   }
 
 }
