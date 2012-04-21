@@ -48,7 +48,7 @@ class python::install {
   }
 
   # create define for upstart template installation
-  define python::install::upstart_template () {
+  define upstart_template () {
     file { "/var/cache/opdemand/$name":
       source => "puppet:///modules/python/$name",
     }
@@ -56,6 +56,6 @@ class python::install {
 
   # install upstart templates
   $templates = [ "master.conf.erb", "process_master.conf.erb", "process.conf.erb"]
-  python::install::upstart_template { $templates: }
+  upstart_template { $templates: }
   
 }
