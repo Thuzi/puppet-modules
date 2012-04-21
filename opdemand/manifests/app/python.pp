@@ -2,7 +2,7 @@ class opdemand::app::python {
 
   # require opdemand common and repo
   require opdemand::common
-  require opdemand::app:repository
+  require opdemand::app::repository
 
   # initialize dynamic parameters
   class {"python::params":

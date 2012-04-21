@@ -1,9 +1,9 @@
 class python::install {
 
   require python::params
-  
-  # install pip
-  package {"python-pip":
+
+  $packages = [ "python-pip", "python-virtualenv "]
+  package { $packages:
     ensure => present,
   }
   
