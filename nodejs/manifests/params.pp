@@ -3,5 +3,5 @@ class nodejs::params (
   $group = "ubuntu",
   $home = "/home/ubuntu",
   $path = "/home/ubuntu/repo",
-  $main = "/home/ubuntu/repo/app.js") {
+  $main = "/home/ubuntu/repo/server.js") {
 }
