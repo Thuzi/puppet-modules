@@ -17,15 +17,6 @@ class python::install {
     ensure => present,
   }
   
-  # manage virtualenv directory
-  file { $virtualenv_path:
-    ensure => directory,
-    owner => $username,
-    group => $group,
-    mode => 750,
-    require => Vcsrepo[$repository_path],
-  }
-  
   # init virtual env
   exec { "virtualenv::init":
     command => "sudo -u $username virtualenv $virtualenv_path --distribute",
@@ -36,6 +27,15 @@ class python::install {
     require => Package[$virtualenv_package],
     # only run if venv doesn't exist
     creates => $virtualenv_path,
+  }
+
+  # manage virtualenv directory
+  file { $virtualenv_path:
+    ensure => directory,
+    owner => $username,
+    group => $group,
+    mode => 750,
+    require => [ Exec["virtualenv::init"], Vcsrepo[$repository_path] ],
   }
 
   # pip install
