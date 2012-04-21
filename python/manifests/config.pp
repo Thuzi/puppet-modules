@@ -10,7 +10,7 @@ class python::config {
   exec {"rebuild-upstart":
     path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
     cwd => $repository_path,
-    command => "foreman export upstart /etc/init -a $app_name -u $username -e $env_path",
+    command => "foreman export upstart /etc/init -a $app_name -u $username -e $env_path -t /var/cache/opdemand",
     # rebuild on inputs.sh change
     subscribe => File[$env_path],
     # notify the service on change
