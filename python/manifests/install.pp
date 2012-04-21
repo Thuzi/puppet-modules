@@ -48,8 +48,8 @@ class python::install {
   }
 
   # create define for upstart template installation
-  define python::install::upstart_template ($template_name) {
-    file { "/var/cache/opdemand/$template_name":
+  define python::install::upstart_template () {
+    file { "/var/cache/opdemand/$name":
       source => "puppet:///modules/python/$name",
     }
   }
