@@ -5,6 +5,7 @@ class python::install {
   $group = "$python::params::group"
   $repository_path = "$python::params::repository_path"
   $virtualenv_path = "$python::params::repository_path/venv"
+  $upstart_template_path = "/var/cache/opdemand/upstart/$python::params::app_name"
   
   # define package names
   $pip_package = "python-pip"
@@ -46,4 +47,15 @@ class python::install {
     subscribe => Vcsrepo[$repository_path],
   }
 
+  # create define for upstart template installation
+  define python::install::upstart_template ($template_path, $template_name) {
+    file { "$template_path/$template_name":
+      source => "puppet:///modules/python/$name",
+    }
+  }
+
+  # install upstart templates
+  $templates = [ "master.conf.erb", "process_master.conf.erb", "process.conf.erb"]
+  python::install::upstart_template { $templates: }
+  
 }

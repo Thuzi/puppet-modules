@@ -6,6 +6,7 @@ class python::config {
   $username = "$python::params::username"
   $env_path = "$opdemand::inputs::env_path"
   
+  # rebuild upstart conf files
   exec {"rebuild-upstart":
     path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
     cwd => $repository_path,
@@ -14,6 +15,7 @@ class python::config {
     subscribe => File[$env_path],
     # notify the service on change
     notify => Service[$app_name],
+    require => Class[Python::Install],
   }
 
 }
