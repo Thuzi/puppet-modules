@@ -39,7 +39,6 @@ class opdemand::app::repository (
     group => $repository_group,
     require => [ Class["Opdemand::Ssh::Known_hosts"], Class["Opdemand::Ssh::Private_keys"] ],
     identity => $identity_path,
-    creates => $repository_path,
   }
   
 }

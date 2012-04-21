@@ -1,5 +1,11 @@
 class python::install {
 
+  # define local vars
+  $username = "$python::params::username"
+  $group = "$python::params::group"
+  $repository_path = "$python::params::repository_path"
+  $virtualenv_path = "$python::params::repository_path/venv"
+  
   # define package names
   $pip_package = "python-pip"
   $virtualenv_package = "python-virtualenv"
@@ -11,21 +17,20 @@ class python::install {
   }
   
   # manage virtualenv directory
-  $virtualenv_path = "$python::params::repository_path/venv"  
   file { $virtualenv_path:
     ensure => directory,
-    owner => $python::params::username,
-    group => $python::params::group,
+    owner => $username,
+    group => $group,
     mode => 750,
   }
   
   # init virtual env
   exec { "virtualenv::init":
-    command => "sudo -u $python::params::username virtualenv $virtualenv_path --distribute",
-    cwd => $python::params::repository_path,
+    command => "sudo -u $username virtualenv $virtualenv_path --distribute",
+    cwd => $repository_path,
     path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
-    user => "$python::params::username",
-    group => "$python::params::group",
+    user => $username,
+    group => $group,
     require => Package[$virtualenv_package],
     # only run if venv doesn't exist
     creates => $virtualenv_path,
@@ -33,13 +38,12 @@ class python::install {
 
   # pip install
   exec { "pip::install":
-    command => "sudo -u $python::params::username pip install",
-    cwd => $python::params::repository_path,
-    path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
-    user => "$python::params::username",
-    group => "$python::params::group",
+    command => "/bin/bash -c 'source $virtualenv_path/bin/activate && pip install -r requirements.txt'",
+    cwd => $repository_path,
+    user => $username,
+    group => $group,
     require => [ Package[$pip_package], File[$virtualenv_path] ],
-    subscribe => Vcsrepo[$python::params::repository_path],
+    subscribe => Vcsrepo[$repository_path],
   }
 
 }
