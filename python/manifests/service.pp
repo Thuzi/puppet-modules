@@ -1,8 +1,6 @@
 class python::service {
 
-  require python::params
-
-  service {"python":
+  service { $python::params::app_name:
     ensure => running,
     provider => upstart,
     require => [ Class[Python::Install], Class[Python::Config] ],

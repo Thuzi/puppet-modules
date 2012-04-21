@@ -10,6 +10,7 @@ class opdemand::app::python {
     group => hiera("application/group", "ubuntu"),
     home => hiera("application/home", "/home/ubuntu"),
     repository_path => hiera("application/repository_path", "/home/ubuntu/repo"),
+    app_name => hiera("application/name", "python"),
   }
 
   # include relevant python classes
