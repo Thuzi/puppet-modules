@@ -20,6 +20,14 @@ class opdemand::app::repository (
     $identity_path = "/dev/null"
   }
   
+  # manage the repository directories
+  file { $repository_path:
+    ensure => directory,
+    owner => $repository_owner,
+    group => $repository_group,
+    mode => 0750,
+  }
+  
   # manage a version control repository
   vcsrepo { $repository_path:
     ensure => latest,
@@ -31,6 +39,7 @@ class opdemand::app::repository (
     group => $repository_group,
     require => [ Class["Opdemand::Ssh::Known_hosts"], Class["Opdemand::Ssh::Private_keys"] ],
     identity => $identity_path,
+    creates => $repository_path,
   }
   
 }
