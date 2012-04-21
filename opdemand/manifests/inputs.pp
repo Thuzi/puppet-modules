@@ -13,7 +13,7 @@ class opdemand::inputs {
   }
   
   exec {"export":
-    cwd = $opdemand::inputs::exec_path,
+    cwd => $opdemand::inputs::exec_path,
     command => "/usr/local/bin/opdemand-export",
     path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
     user => "root",
