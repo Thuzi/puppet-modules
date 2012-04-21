@@ -23,6 +23,7 @@ class python::install {
     owner => $username,
     group => $group,
     mode => 750,
+    require => Vcsrepo[$repository_path],
   }
   
   # init virtual env
