@@ -7,11 +7,11 @@ class opdemand::ssh::authorized_keys {
   $keys = hiera("server/ssh_authorized_keys")
   
   # add a key for each in the list
-  opdemand::ssh::authorized_keys::add { $keys: }
+  add { $keys: }
   
 }
 
-define opdemand::ssh::authorized_keys::add() {
+define add() {
   
   if $name =~ /^(ssh-...) ([^ ]+) ?(.+)?/ {
     
