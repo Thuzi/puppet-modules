@@ -1,12 +1,9 @@
 class nodejs::service {
 
-  require nodejs::params
-  
-  service {"nodejs":
+  service { $nodejs::params::app_name:
     ensure => running,
-    name => "nodejs",
     provider => upstart,
-    require => [ Package["nodejs"], Class[Nodejs::Config] ],
+    require => [ Class[Nodejs::Install], Class[Nodejs::Config] ],
   }
 
 }
