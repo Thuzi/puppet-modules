@@ -4,10 +4,6 @@ class opdemand::app::nodejs {
   require opdemand::common
   require opdemand::app::repository
   
-  # install ppa with precompiled node
-  class {"apt":} ->
-  apt::ppa {"ppa:chris-lea/node.js":} ->
-  
   # initialize dynamic parameters
   class {"nodejs::params":
     username => hiera("application/username", "ubuntu"),
