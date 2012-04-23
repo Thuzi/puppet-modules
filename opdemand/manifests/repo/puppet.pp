@@ -13,7 +13,6 @@ class opdemand::repo::puppet (
   require opdemand::common
   
   vcsrepo { $repository_path:
-    ensure => latest,
     provider => $repository_provider,
     source => $repository_url,
     revision => $repository_revision,

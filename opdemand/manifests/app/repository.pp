@@ -22,7 +22,6 @@ class opdemand::app::repository (
   
   # manage a version control repository
   vcsrepo { $repository_path:
-    ensure => latest,
     provider => $repository_provider,
     source => $repository_url,
     # NOTE: as of 2012/4/12 this only works on initial clone
