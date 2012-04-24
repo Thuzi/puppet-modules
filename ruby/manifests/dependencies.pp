@@ -8,6 +8,7 @@ class ruby::dependencies {
   # bundle install latest dependencies
   exec { "bundle-install":
     command => "bundle install --deployment",
+    path => ["/sbin", "/bin", "/usr/bin", "/usr/sbin", "/usr/local/bin"],
     cwd => $repository_path,
     user => $username,
     group => $group,
