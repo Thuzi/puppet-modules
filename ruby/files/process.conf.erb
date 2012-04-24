@@ -6,5 +6,5 @@ script
   sudo -u <%= user %> -i
   cd <%= engine.directory %>
   export PORT=<%= port %>;<% engine.environment.each_pair do |var,env| %> export <%= var.upcase %>='<%= env %>'; <% end %>
-  exec bundler exec <%= process.command %> >> <%= log_root %>/<%=process.name%>-<%=num%>.log 2>&1
+  exec <%= process.command %> >> <%= log_root %>/<%=process.name%>-<%=num%>.log 2>&1
 end script
