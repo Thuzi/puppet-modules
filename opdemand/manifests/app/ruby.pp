@@ -16,6 +16,7 @@ class opdemand::app::ruby {
   # include relevant ruby classes
   include ruby::install
   include ruby::config
+  include ruby::dependencies
   include ruby::service
 
 }
