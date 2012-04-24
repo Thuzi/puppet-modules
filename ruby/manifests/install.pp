@@ -21,7 +21,7 @@ class ruby::install {
   # install ruby1.9.1 as default (actually 1.9.2 on ubuntu 11.10)
   exec { "ruby1.9.2-runtime":
     command => "update-alternatives --set ruby /usr/bin/ruby1.9.1",
-    path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
+    path => ["/sbin", "/bin", "/usr/bin", "/usr/sbin", "/usr/local/bin"],
     require => Package["ruby1.9.1"],
     unless => "ruby -v | grep 1.9.",
   }
@@ -29,7 +29,7 @@ class ruby::install {
   # install ruby1.9.1 gem command as default
   exec { "ruby1.9.2-gem":
     command => "update-alternatives --set gem /usr/bin/ruby1.9.1",
-    path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
+    path => ["/sbin", "/bin", "/usr/bin", "/usr/sbin", "/usr/local/bin"],
     require => Package["ruby1.9.1"],
     unless => "gem -v | grep 1.3.7",
   }
