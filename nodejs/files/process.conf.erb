@@ -2,8 +2,10 @@ start on starting <%= app %>-<%= process.name %>
 stop on stopping <%= app %>-<%= process.name %>
 respawn
 
+setuid <%= user %>
+setgid <%= user %>
+
 script
-  sudo -u <%= user %> -i
   cd <%= engine.directory %>
   export PATH=$PATH:<%= engine.directory %>/node_modules/.bin
   export PORT=<%= port %>;<% engine.environment.each_pair do |var,env| %> export <%= var.upcase %>='<%= env %>'; <% end %>
