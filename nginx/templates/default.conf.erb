@@ -10,7 +10,7 @@ server {
 
     # define upstream for our app worker
     upstream workers {
-        <% num_workers.times do |i| %>
+        <% Integer(num_workers).times do |i| %>
             server http://localhost:500<%= i %>;
         <% end %>
     }

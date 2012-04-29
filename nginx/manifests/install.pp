@@ -9,7 +9,7 @@ class nginx::install {
   $apache_packages = [ "apache2.2-common", "apache2.2-bin", "apache2-utils" ]
   
   # install ppa
-  apt::ppa {$nginx_ppa:}
+  apt::ppa {$ppa:}
   
   # install base python packages
   package { $packages:
