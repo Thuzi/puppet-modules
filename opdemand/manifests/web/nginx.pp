@@ -5,8 +5,8 @@ class opdemand::web::nginx {
   # initialize dynamic parameters
   class {"nginx::params":
     # nginx params
-    template_name = hiera("nginx/template_name", "default"),
-    www_root = hiera("nginx/public_root", "/home/ubuntu/repo/public"),
+    template_name => hiera("nginx/template_name", "default"),
+    public_root => hiera("nginx/public_root", "/home/ubuntu/repo/public"),
     # application params
     app_name => hiera("application/name", "nginx"),
     num_workers => hiera("application/workers", 3),
