@@ -1,5 +1,9 @@
 class opdemand::common {
   
+  # include base modules
+  include apt
+  include stdlib
+      
   # manage orchestration inputs
   class {"opdemand::inputs":} ->
     
