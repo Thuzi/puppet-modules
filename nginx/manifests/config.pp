@@ -17,5 +17,11 @@ class nginx::config {
     content => template("nginx/$template_name.conf.erb"),
     require => Class[Nginx::Install],
   }
+
+  # ensure default site is removed
+  file {"/etc/nginx/sites-enabled/default":
+    ensure => absent,
+    require => Class[Nginx::Install],
+  }  
   
 }

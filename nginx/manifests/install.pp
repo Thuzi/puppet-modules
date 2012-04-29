@@ -14,7 +14,7 @@ class nginx::install {
   # install base python packages
   package { $packages:
     ensure => latest,
-    require => Apt::ppa[$ppa],
+    require => Apt::Ppa[$ppa],
   }
 
   # remove apache2 packages that may be auto-installed on ubuntu
