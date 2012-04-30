@@ -10,7 +10,7 @@ class opdemand::web::nginx {
     # application params
     app_name => hiera("application/name", "nginx"),
     start_port => hiera("application/port", "5000"),
-    num_workers => hiera("application/workers", 3),
+    num_listeners => hiera("application/listeners", 1),
   }
 
   # include relevant classes
