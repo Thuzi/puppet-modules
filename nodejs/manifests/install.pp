@@ -12,7 +12,6 @@ class nodejs::install {
   $npm_package = "npm"
   
   # install ppa with precompiled node
-  class {"apt":} ->
   apt::ppa {$node_ppa:}
     
   # install base nodejs packages

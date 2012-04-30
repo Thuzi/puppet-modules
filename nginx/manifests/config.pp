@@ -2,7 +2,7 @@ class nginx::config {
   
   # local variables
   $app_name = $nginx::params::app_name
-  $num_workers = $nginx::params::num_workers
+  $num_listeners = $nginx::params::num_listeners
   $template_name = $nginx::params::template_name
   $public_root = $nginx::params::public_root
   $server_name = $nginx::params::server_name

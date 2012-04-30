@@ -1,7 +1,7 @@
 
-# define upstream for our app workers
-upstream workers {
-    <% Integer(num_workers).times do |i| %>server localhost:<%= start_port[0..-2] %><%= i %>;<% end %>
+# define upstream for our app listeners
+upstream listeners {
+    <% Integer(num_listeners).times do |i| %>server localhost:<%= start_port[0..-2] %><%= i %>;<% end %>
 }
 
 server {
@@ -25,7 +25,7 @@ server {
         proxy_set_header Host $http_host;
         proxy_redirect off;
                     
-        proxy_pass http://workers;
+        proxy_pass http://listeners;
     }
 
     # add error page support

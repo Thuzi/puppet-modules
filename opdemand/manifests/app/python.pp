@@ -11,7 +11,7 @@ class opdemand::app::python {
     home => hiera("application/home", "/home/ubuntu"),
     repository_path => hiera("application/repository_path", "/home/ubuntu/repo"),
     app_name => hiera("application/name", "python"),
-    num_workers => hiera("application/workers", 3),
+    num_listeners => hiera("application/listeners", 1),
     port => hiera("application/port", 8000),
   }
 

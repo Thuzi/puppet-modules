@@ -1,5 +1,5 @@
 class nginx::params (
-  $num_workers = 3,
+  $num_listeners = 1,
   $public_root = "/home/ubuntu/repo/public",
   $template_name = "default",
   $access_port = 80,
