@@ -17,6 +17,7 @@ class nginx::config {
     mode => 0644,
     content => template("nginx/$template_name.conf.erb"),
     require => Class[Nginx::Install],
+    notify => Service["nginx"],
   }
 
   # ensure default site is removed

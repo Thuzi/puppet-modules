@@ -2,7 +2,7 @@
 # define upstream for our app workers
 upstream workers {
     <% Integer(num_workers).times do |i| %>
-        server localhost:<% start_port[0..-2] %><%= i %>;
+        server localhost:<%= start_port[0..-2] %><%= i %>;
     <% end %>
 }
 
