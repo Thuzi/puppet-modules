@@ -1,9 +1,6 @@
 class nginx::install {
 
   # local variables
-  $username = "$python::params::username"
-  $group = "$python::params::group"
-  $repository_path = "$python::params::repository_path"
   $ppa = "ppa:nginx/stable" # use latest stable
   $packages = [ "nginx" ]
   $apache_packages = [ "apache2.2-common", "apache2.2-bin", "apache2-utils" ]
