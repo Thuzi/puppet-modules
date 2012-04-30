@@ -9,7 +9,7 @@ class opdemand::web::nginx {
     public_root => hiera("nginx/public_root", "/home/ubuntu/repo/public"),
     # application params
     app_name => hiera("application/name", "nginx"),
-    start_port => hiera("application/start_port", "5000"),
+    start_port => hiera("application/port", "5000"),
     num_workers => hiera("application/workers", 3),
   }
 
