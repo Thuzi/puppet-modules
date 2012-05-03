@@ -1,7 +1,7 @@
 
 # define upstream for our app listeners
 upstream listeners {
-    <% Integer(num_listeners).times do |i| %>server localhost:<%= start_port[0..-2] %><%= i %>;<% end %>
+    <% Integer(num_listeners).times do |i| %>server localhost:<%= String(start_port)[0..-2] %><%= i %>;<% end %>
 }
 
 server {
