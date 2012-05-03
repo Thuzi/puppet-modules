@@ -7,7 +7,9 @@ class vanilla::install {
   
   # exec bin/deploy if the repo changed
   exec { "bin::deploy":
-    command => "bin/deploy",
+    command => "$repository_path/bin/deploy",
+    # log raw output from shell command
+    logoutput => true,
     cwd => $repository_path,
     path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
     user => $username,
