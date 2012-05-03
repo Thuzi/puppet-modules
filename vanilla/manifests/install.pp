@@ -1,6 +1,20 @@
 class vanilla::install {
+
+  # local variables
+  $repository_path = $vanilla::params::repository_path
+  $username = $vanilla::params::username
+  $group = $vanilla::params::group
   
-  # Not much to install other than upstart templates
+  # exec bin/deploy if the repo changed
+  exec { "bin::deploy":
+    command => "bin/deploy",
+    cwd => $repository_path,
+    path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
+    user => $username,
+    group => $group,
+    require => Vcsrepo[$repository_path],
+    subscribe => Vcsrepo[$repository_path],
+  }
   
   # create define for upstart template installation
   define upstart_template () {
