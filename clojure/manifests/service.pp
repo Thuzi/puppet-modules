@@ -1,13 +1,14 @@
 class clojure::service {
 
-  require clojure::params
+  # local variables
+  $repository_path = $clojure::params::repository_path
+  $app_name = $clojure::params::app_name
   
-  service {"clojure":
+  service { $nodejs::params::app_name:
     ensure => running,
-    name => "clojure",
     provider => upstart,
-    require => [ Class[Clojure::Install], Class[Clojure::Config] ],
-    subscribe => Vcsrepo["$clojure::params::repository_path"],
-  } 
+    require => [ Class[Nodejs::Install], Class[Nodejs::Config] ],
+    subscribe => Vcsrepo[$repository_path],
+  }
 
 }

@@ -1,19 +1,35 @@
 class clojure::install {
 
-  require clojure::params
-  $packages = ["leiningen"]
+  # define local vars
+  $username = "$clojure::params::username"
+  $group = "$clojure::params::group"
+  $repository_path = "$clojure::params::repository_path"
+  $app_name = "$clojure::params::app_name"
+  $upstart_template_path = "/var/cache/opdemand/upstart/$app_name"  
+  $packages = [ "leiningen" ]
   
- package { $packages:
+  package { $packages:
         ensure => latest,
   }
-  exec { "clojure::install::${name}":
-        command => "lein deps",
-        cwd => "$clojure::params::repository_path",
-        path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
-        user => "$clojure::params::username",
-        group => "$clojure::params::group",
-        subscribe => Vcsrepo["$clojure::params::repository_path"],
-  } 
-  
 
+  exec { "lein::deps":
+    command => "lein deps",
+    cwd => $repository_path,
+    path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
+    user => $username,
+    group => $group,
+    subscribe => Vcsrepo["$repository_path"],
+  }
+
+  # create define for upstart template installation
+  define upstart_template () {
+    file { "/var/cache/opdemand/$name":
+      source => "puppet:///modules/clojure/$name",
+    }
+  }
+  
+  # install upstart templates
+  $templates = [ "master.conf.erb", "process_master.conf.erb", "process.conf.erb"]
+  upstart_template { $templates: }
+  
 }

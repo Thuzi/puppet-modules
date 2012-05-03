@@ -6,4 +6,5 @@ $port = "8080",
 $username = "ubuntu",
 $group = "ubuntu",  
 $home = "/home/ubuntu",
-$repository_path = "/home/ubuntu/repo") { } 
+$repository_path = "/home/ubuntu/repo",
+$app_name = "clojure") { } 
