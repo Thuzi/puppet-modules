@@ -4,7 +4,7 @@ class couchdb::service {
     enable    => true,
     ensure    => running,
     hasstatus => true,
-    require   => [Package["couchdb"], File["/etc/couchdb/local.ini"]],
+    require   => [Class[Couchdb::Install], Class[Couchdb::Config]],
     subscribe => File["/etc/couchdb/local.ini"],
   }
 
