@@ -4,6 +4,7 @@ class python::deploy {
   $repository_path = $python::params::repository_path
   $username = $python::params::username
   $group = $python::params::group
+  $virtualenv_path = "$python::params::repository_path/venv"
   
   # exec bin/deploy if the repo changed
   exec { "bin::deploy":
