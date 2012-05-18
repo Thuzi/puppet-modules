@@ -20,4 +20,14 @@ class python::deploy {
     onlyif => "test -x $repository_path/bin/deploy",
   }
 
+  # pip install
+  exec { "pip::install":
+    command => "/bin/bash -c 'source $virtualenv_path/bin/activate && pip install -r requirements.txt'",
+    cwd => $repository_path,
+    user => $username,
+    group => $group,
+    require => [ Class[Python::Install], Exec["bin::deploy"] ],
+    subscribe => Vcsrepo[$repository_path],
+  }
+  
 }

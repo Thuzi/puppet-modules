@@ -38,16 +38,6 @@ class python::install {
     require => [ Exec["virtualenv::init"], Vcsrepo[$repository_path] ],
   }
 
-  # pip install
-  exec { "pip::install":
-    command => "/bin/bash -c 'source $virtualenv_path/bin/activate && pip install -r requirements.txt'",
-    cwd => $repository_path,
-    user => $username,
-    group => $group,
-    require => [ Package[$pip_package], File[$virtualenv_path] ],
-    subscribe => Vcsrepo[$repository_path],
-  }
-
   # create define for upstart template installation
   define upstart_template () {
     file { "/var/cache/opdemand/$name":
