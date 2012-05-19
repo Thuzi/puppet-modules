@@ -1,14 +1,13 @@
 class couchdb::install {
 
-  # Use current CouchDB from launchpad since Ubuntu itself dropped the ball
-  apt::ppa {"ppa:longsleep/couchdb":}
+#  apt::ppa {"ppa:longsleep/couchdb":}
 
   package {"couchdb":
     ensure => latest,
-    require => Apt::Ppa["ppa:longsleep/couchdb"],
+#    require => Apt::Ppa["ppa:longsleep/couchdb"],
   }
 
-  # workaround couchdb package daemon issues in ubuntu start script
+  # workaround couchdb package daemon issues in ubuntu 11.10
   exec {"prevent-daemon-start":
     command => "echo '
 COUCHDB_USER=couchdb
