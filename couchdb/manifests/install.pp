@@ -1,6 +1,6 @@
 class couchdb::install {
 
-  # Use current CouchDB from launchpad since Ubuntu itself dropped the ball
+  # Use current CouchDB from launchpad since Ubuntu's is ancient
   apt::ppa {"ppa:longsleep/couchdb":}
 
   package {"couchdb":
@@ -8,29 +8,13 @@ class couchdb::install {
     require => Apt::Ppa["ppa:longsleep/couchdb"],
   }
 
-  # workaround couchdb package daemon issues in ubuntu start script
-  exec {"prevent-daemon-start":
-    command => "echo '
-COUCHDB_USER=couchdb
-COUCHDB_STDOUT_FILE=/dev/null
-COUCHDB_STDERR_FILE=/dev/null
-COUCHDB_RESPAWN_TIMEOUT=5
-COUCHDB_OPTIONS=
-ENABLE_SERVER=0
-' > /etc/default/couchdb",
-    provider => shell,
-    unless => "service couchdb status"
-  }
-
-  exec {"allow-daemon-start":
-    command => "sed -i -e s/ENABLE_SERVER=0/ENABLE_SERVER=1/ /etc/default/couchdb",
-    provider => shell,
-    unless => "service couchdb status"
+  # Kill the zombie CouchDB server started by broken .deb packaging.
+  exec {"killall-couchdb":
+    command => "/usr/bin/killall -q heart beam.smp couchdb",
   }
 
   # order deps to work around packaging issue
-  Exec["prevent-daemon-start"] ->
   Package["couchdb"] ->
-  Exec["allow-daemon-start"]
+  Exec["killall-couchdb"]
 
 }
