@@ -1,20 +1,35 @@
 class couchdb::install {
 
-  # Use current CouchDB from launchpad since Ubuntu's is ancient
-  apt::ppa {"ppa:longsleep/couchdb":}
+#  apt::ppa {"ppa:longsleep/couchdb":}
 
   package {"couchdb":
     ensure => latest,
-    require => Apt::Ppa["ppa:longsleep/couchdb"],
+#    require => Apt::Ppa["ppa:longsleep/couchdb"],
   }
 
-  # Kill the zombie CouchDB server started by broken .deb packaging.
-  exec {"killall-couchdb":
-    command => "/usr/bin/killall -q heart beam.smp couchdb",
+  # workaround couchdb package daemon issues in ubuntu 11.10
+  exec {"prevent-daemon-start":
+    command => "echo '
+COUCHDB_USER=couchdb
+COUCHDB_STDOUT_FILE=/dev/null
+COUCHDB_STDERR_FILE=/dev/null
+COUCHDB_RESPAWN_TIMEOUT=5
+COUCHDB_OPTIONS=
+ENABLE_SERVER=0
+' > /etc/default/couchdb",
+    provider => shell,
+    unless => "service couchdb status"
+  }
+
+  exec {"allow-daemon-start":
+    command => "sed -i -e s/ENABLE_SERVER=0/ENABLE_SERVER=1/ /etc/default/couchdb",
+    provider => shell,
+    unless => "service couchdb status"
   }
 
   # order deps to work around packaging issue
+  Exec["prevent-daemon-start"] ->
   Package["couchdb"] ->
-  Exec["killall-couchdb"]
+  Exec["allow-daemon-start"]
 
 }
