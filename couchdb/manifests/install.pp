@@ -1,13 +1,14 @@
 class couchdb::install {
 
-#  apt::ppa {"ppa:longsleep/couchdb":}
+  # use a more current couchdb version than ubuntu has
+  apt::ppa {"ppa:longsleep/couchdb":}
 
   package {"couchdb":
     ensure => latest,
-#    require => Apt::Ppa["ppa:longsleep/couchdb"],
+    require => Apt::Ppa["ppa:longsleep/couchdb"],
   }
 
-  # workaround couchdb package daemon issues in ubuntu 11.10
+  # work around couchdb package daemon issues in ubuntu 
   exec {"prevent-daemon-start":
     command => "echo '
 COUCHDB_USER=couchdb
@@ -18,13 +19,11 @@ COUCHDB_OPTIONS=
 ENABLE_SERVER=0
 ' > /etc/default/couchdb",
     provider => shell,
-    unless => "service couchdb status"
   }
 
   exec {"allow-daemon-start":
     command => "sed -i -e s/ENABLE_SERVER=0/ENABLE_SERVER=1/ /etc/default/couchdb",
     provider => shell,
-    unless => "service couchdb status"
   }
 
   # order deps to work around packaging issue
