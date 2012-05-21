@@ -1,4 +1,4 @@
-class python::deploy {
+class python::deps {
 
   # local variables
   $repository_path = $python::params::repository_path
@@ -27,7 +27,7 @@ class python::deploy {
     cwd => $repository_path,
     user => $username,
     group => $group,
-    require => [ Class[Python::Install], Exec["bin::deploy"] ],
+    require => Exec["bin::deploy"],
     subscribe => Vcsrepo[$repository_path],
   }
   

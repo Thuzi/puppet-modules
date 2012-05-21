@@ -19,6 +19,6 @@ class opdemand::app::python {
   include python::install
   include python::config
   include python::service
-  include python::deploy
+  include python::deps
 
 }
