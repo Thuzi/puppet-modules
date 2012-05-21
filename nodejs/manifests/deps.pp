@@ -27,7 +27,7 @@ class nodejs::deps {
     path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
     user => $username,
     group => $group,
-    require => Package[$npm_package],
+    require => Exec["bin::deploy"],
     subscribe => Vcsrepo[$repository_path],
   }
   
