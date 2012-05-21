@@ -16,7 +16,7 @@ server {
     
     # serve /static directly out of the public root
     location /static {
-        root <%= public_root %>/static ;
+        root <%= public_root %>;
     }
 
     # pass all other traffic to the workers
