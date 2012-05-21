@@ -20,17 +20,6 @@ class nodejs::install {
     ensure => present,
     require => Apt::Ppa[$node_ppa],
   }
-  
-  # npm install
-  exec { "npm::install":
-    command => "sudo -u $username npm install",
-    cwd => $repository_path,
-    path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
-    user => $username,
-    group => $group,
-    require => Package[$npm_package],
-    subscribe => Vcsrepo[$repository_path],
-  }
 
   # create define for upstart template installation
   define upstart_template () {

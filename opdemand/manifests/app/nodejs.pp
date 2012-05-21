@@ -13,9 +13,10 @@ class opdemand::app::nodejs {
     app_name => hiera("application/name", "nodejs"),
   }
 
-  # include relevant python classes
+  # include relevant classes
   include nodejs::install
   include nodejs::config
   include nodejs::service
+  include nodejs::deps
 
 }
