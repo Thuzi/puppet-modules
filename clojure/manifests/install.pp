@@ -12,15 +12,6 @@ class clojure::install {
         ensure => latest,
   }
 
-  exec { "lein::deps":
-    command => "lein deps",
-    cwd => $repository_path,
-    path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
-    user => $username,
-    group => $group,
-    subscribe => Vcsrepo["$repository_path"],
-  }
-
   # create define for upstart template installation
   define upstart_template () {
     file { "/var/cache/opdemand/$name":

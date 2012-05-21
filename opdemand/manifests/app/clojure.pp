@@ -13,9 +13,10 @@ class opdemand::app::clojure {
     app_name => hiera("application/name", "clojure"),
   }
 
-  # include relevant python classes
+  # include relevant classes
   include clojure::install
   include clojure::config
   include clojure::service
+  include clojure::deps
 
 }
