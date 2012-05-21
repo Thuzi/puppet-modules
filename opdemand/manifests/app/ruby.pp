@@ -13,10 +13,10 @@ class opdemand::app::ruby {
     app_name => hiera("application/name", "ruby"),
   }
 
-  # include relevant ruby classes
+  # include relevant classes
   include ruby::install
   include ruby::config
-  include ruby::dependencies
   include ruby::service
+  include ruby::deps
 
 }
