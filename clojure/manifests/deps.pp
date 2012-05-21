@@ -1,5 +1,10 @@
 class clojure::deps {
 
+  # define local vars
+  $username = "$clojure::params::username"
+  $group = "$clojure::params::group"
+  $repository_path = "$clojure::params::repository_path"
+
   # exec bin/deploy if the repo changed
   exec { "bin::deploy":
     command => "$repository_path/bin/deploy",
