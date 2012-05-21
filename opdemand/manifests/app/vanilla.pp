@@ -17,5 +17,6 @@ class opdemand::app::vanilla {
   include vanilla::install
   include vanilla::config
   include vanilla::service
+  include vanilla::deps
 
 }
