@@ -7,7 +7,7 @@ class clojure::service {
   service { $app_name:
     ensure => running,
     provider => upstart,
-    require => [ Class[Clojure::Install], Class[Clojure::Config] ],
+    require => [ Class[Clojure::Install], Class[Clojure::Config], Class[Clojure::Deps] ],
     subscribe => Vcsrepo[$repository_path],
   }
 
