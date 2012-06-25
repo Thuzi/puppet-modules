@@ -1,9 +1,9 @@
-class vanilla::config {
+class custom::config {
   
   # local variables
-  $repository_path = "$vanilla::params::repository_path"
-  $app_name = "$vanilla::params::app_name"
-  $username = "$vanilla::params::username"
+  $repository_path = "$custom::params::repository_path"
+  $app_name = "$custom::params::app_name"
+  $username = "$custom::params::username"
   $env_path = "$opdemand::inputs::env_path"
   
   # rebuild upstart conf files
@@ -15,7 +15,7 @@ class vanilla::config {
     subscribe => [ File[$env_path], Vcsrepo[$repository_path] ],
     # notify the service on change
     notify => Service[$app_name],
-    require => Class[Vanilla::Install],
+    require => Class[Custom::Install],
   }
   
   

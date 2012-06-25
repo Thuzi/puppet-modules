@@ -1,7 +1,7 @@
-class vanilla::params (
+class custom::params (
   $username = "ubuntu",
   $group = "ubuntu",
   $home = "/home/ubuntu",
   $repository_path = "/home/ubuntu/repo",
-  $app_name = "vanilla") {
+  $app_name = "custom") {
 }

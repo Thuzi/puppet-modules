@@ -1,22 +1,22 @@
-class opdemand::app::vanilla {
+class opdemand::app::custom {
 
   # require opdemand common and repo
   require opdemand::common
   require opdemand::app::repository
   
   # initialize dynamic parameters
-  class {"vanilla::params":
+  class {"custom::params":
     username => hiera("application/username", "ubuntu"),
     group => hiera("application/group", "ubuntu"),
     home => hiera("application/home", "/home/ubuntu"),
     repository_path => hiera("application/repository_path", "/home/ubuntu/repo"),
-    app_name => hiera("application/name", "vanilla"),
+    app_name => hiera("application/name", "custom"),
   }
 
-  # include relevant python classes
-  include vanilla::install
-  include vanilla::config
-  include vanilla::service
-  include vanilla::deps
+  # include relevant classes
+  include custom::install
+  include custom::config
+  include custom::service
+  include custom::deps
 
 }

@@ -1,9 +1,9 @@
-class vanilla::deps {
+class custom::deps {
 
   # local variables
-  $repository_path = $vanilla::params::repository_path
-  $username = $vanilla::params::username
-  $group = $vanilla::params::group
+  $repository_path = $custom::params::repository_path
+  $username = $custom::params::username
+  $group = $custom::params::group
   
   # exec bin/deploy if the repo changed
   exec { "bin::deploy":

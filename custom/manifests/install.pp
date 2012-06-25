@@ -1,14 +1,14 @@
-class vanilla::install {
+class custom::install {
 
   # local variables
-  $repository_path = $vanilla::params::repository_path
-  $username = $vanilla::params::username
-  $group = $vanilla::params::group
+  $repository_path = $custom::params::repository_path
+  $username = $custom::params::username
+  $group = $custom::params::group
   
   # create define for upstart template installation
   define upstart_template () {
     file { "/var/cache/opdemand/$name":
-      source => "puppet:///modules/vanilla/$name",
+      source => "puppet:///modules/custom/$name",
     }
   }
   
