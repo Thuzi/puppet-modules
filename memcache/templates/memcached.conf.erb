@@ -18,7 +18,7 @@ logfile /var/log/memcached.log
 -m <%= scope.lookupvar("memcache::params::size") %>
 
 # Default connection port is 11211
--p port <%= scope.lookupvar("memcache::params::port") %>
+-p <%= scope.lookupvar("memcache::params::port") %>
 
 # Run the daemon as root. The start-memcached will default to running as root if no
 # -u command is present in this config file
