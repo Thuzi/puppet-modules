@@ -6,7 +6,7 @@ class memcache::config {
     owner => "root",
     group => "root",
     mode => 0644,
-    content => template("memcached/memcached.conf.erb"),
+    content => template("memcache/memcached.conf.erb"),
     require => Class[Memcache::Install],
   }
 
