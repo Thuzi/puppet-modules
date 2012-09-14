@@ -4,9 +4,9 @@ class opdemand::database::couchdb {
 
   # initialize dynamic parameters
   class {"couchdb::params":
-    allow_cidr => hiera("database/allow_cidr", "0.0.0.0/0"),
-    bind => hiera("database/bind", "0.0.0.0"),
-    port => hiera("database/port", "5984"),
+    allow_cidr => hiera("DATABASE_ALLOW_CIDR", "0.0.0.0/0"),
+    bind => hiera("DATABASE_BIND", "0.0.0.0"),
+    port => hiera("DATABASE_PORT", "5984"),
   }
   
   # include relevant classes
