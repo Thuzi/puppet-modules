@@ -4,8 +4,8 @@ class opdemand::cache::redis {
 
   # initialize dynamic parameters
   class {"redis::params":
-    bind => hiera("cache/bind", "0.0.0.0"),
-    port => hiera("cache/port", "6379"),
+    bind => hiera("CACHE_BIND", "0.0.0.0"),
+    port => hiera("CACHE_PORT", "6379"),
   }
   
   # include relevant classes

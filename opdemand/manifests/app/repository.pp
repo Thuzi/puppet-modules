@@ -2,13 +2,13 @@ class opdemand::app::repository (
   
   # inputs default to hiera lookup followed by second arg
   # can override using parameterized class inputs
-  $repository_provider = hiera("application/repository_provider", "git"),
-  $repository_key = hiera("application/repository_key", ""),
-  $repository_url = hiera("application/repository_url"),
-  $repository_path = hiera("application/repository_path", "/home/ubuntu/repo"),
-  $repository_revision = hiera("application/repository_revision", "master"),
-  $repository_owner = hiera("application/username", "ubuntu"),
-  $repository_group = hiera("application/group", "ubuntu")) {
+  $repository_provider = hiera("APPLICATION_REPOSITORY_PROVIDER", "git"),
+  $repository_key = hiera("APPLICATION_REPOSITORY_KEY", ""),
+  $repository_url = hiera("APPLICATION_REPOSITORY_URL"),
+  $repository_path = hiera("APPLICATION_REPOSITORY_PATH", "/home/ubuntu/repo"),
+  $repository_revision = hiera("APPLICATION_REPOSITORY_REVISION", "master"),
+  $repository_owner = hiera("APPLICATION_USERNAME", "ubuntu"),
+  $repository_group = hiera("APPLICATION_GROUP", "ubuntu")) {
 
   # require common including ssh classes
   require opdemand::common

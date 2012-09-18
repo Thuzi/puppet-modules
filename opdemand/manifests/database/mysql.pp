@@ -6,10 +6,10 @@ class opdemand::database::mysql {
   # parameterized inputs default to hiera then second arg
   # initialize dynamic parameters
   class {"mysql::params":
-    bind => hiera("database/bind", "0.0.0.0"),
-    port => hiera("database/port", 3306),
-    username => hiera("database/username", "mysqluser"),
-    password => hiera("database/password", "changeme123"),
+    bind => hiera("DATABASE_BIND", "0.0.0.0"),
+    port => hiera("DATABASE_PORT", 3306),
+    username => hiera("DATABASE_USERNAME", "mysqluser"),
+    password => hiera("DATABASE_PASSWORD", "changeme123"),
   }
 
   # install and configure mysql
@@ -18,8 +18,8 @@ class opdemand::database::mysql {
   include mysql::service
 
   # # output dynamic orchestration values
-  # opdemand::output {"database/host":
-     # key => "database/host",
+  # opdemand::output {"DATABASE_HOST":
+     # key => "DATABASE_HOST",
      # value => $ec2_public_hostname,
   # }
 

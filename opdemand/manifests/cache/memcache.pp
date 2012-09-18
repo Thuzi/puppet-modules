@@ -4,10 +4,10 @@ class opdemand::cache::memcache {
 
   # initialize dynamic parameters
   class {"memcache::params":
-    bind => hiera("cache/bind", "0.0.0.0"),
-    port => hiera("cache/port", "11211"),
-    username => hiera("cache/username", "memcache"),
-    size => hiera("cache/size", "256"),
+    bind => hiera("CACHE_BIND", "0.0.0.0"),
+    port => hiera("CACHE_PORT", "11211"),
+    username => hiera("CACHE_USERNAME", "memcache"),
+    size => hiera("CACHE_SIZE", "256"),
   }
   
   # include relevant classes

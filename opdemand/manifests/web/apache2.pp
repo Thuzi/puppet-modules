@@ -5,7 +5,7 @@ class opdemand::web::apache2 {
 
   # initialize dynamic parameters
   class {"apache2::params":
-    mpm => hiera("apache2/mpm", "prefork"),
+    mpm => hiera("APACHE2_MPM", "prefork"),
   }
 
   # include relevant classes

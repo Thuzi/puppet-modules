@@ -4,7 +4,7 @@ class opdemand::database::mongodb {
 
   # initialize dynamic parameters
   class {"mongodb::params":
-    port => hiera("database/port", 27017),
+    port => hiera("DATABASE_PORT", 27017),
   }
   
   # include relevant classes

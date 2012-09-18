@@ -10,9 +10,9 @@ class opdemand::web::nodejs {
 
   # initialize dynamic parameters
   class {"nodejs::params":
-    username => hiera("application/username", "ubuntu"),
-    home => hiera("application/home", "/home/ubuntu"),
-    main => hiera("application/main", "/home/ubuntu/repo/server.js"),
+    username => hiera("APPLICATION_USERNAME", "ubuntu"),
+    home => hiera("APPLICATION_HOME", "/home/ubuntu"),
+    main => hiera("APPLICATION_MAIN", "/home/ubuntu/repo/server.js"),
   }
 
   # include relevant nodejs classes
