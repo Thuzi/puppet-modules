@@ -7,7 +7,8 @@ setgid <%= user %>
 
 script
   cd <%= engine.directory %>
-  export PORT=<%= port %>;<% engine.environment.each_pair do |var,env| %> export <%= var.upcase %>='<%= env %>'; <% end %>
   . venv/bin/activate
+  export PORT=<%= port %>;  
+  . .opdemand
   exec <%= process.command %> >> <%= log_root %>/<%=process.name%>-<%=num%>.log 2>&1
 end script

@@ -8,6 +8,6 @@ setgid <%= user %>
 script
   cd <%= engine.directory %>
   export PATH=$PATH:<%= engine.directory %>/node_modules/.bin
-  export PORT=<%= port %>;<% engine.environment.each_pair do |var,env| %> export <%= var.upcase %>='<%= env %>'; <% end %>
+  . .opdemand
   exec <%= process.command %> >> <%= log_root %>/<%=process.name%>-<%=num%>.log 2>&1
 end script
