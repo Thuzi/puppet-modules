@@ -6,7 +6,7 @@ setuid <%= user %>
 setgid <%= user %>
 
 script
-  . .opdemand
+  . /home/ubuntu/.opdemand
   cd <%= engine.directory %>
   . venv/bin/activate
   exec <%= process.command %> >> <%= log_root %>/<%=process.name%>-<%=num%>.log 2>&1

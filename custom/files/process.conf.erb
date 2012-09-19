@@ -6,7 +6,7 @@ setuid <%= user %>
 setgid <%= user %>
 
 script
-  . .opdemand
+  . /home/ubuntu/.opdemand
   export PATH=$PATH:<%= engine.directory %>/bin
   cd <%= engine.directory %>
   exec <%= process.command %> >> <%= log_root %>/<%=process.name%>-<%=num%>.log 2>&1
