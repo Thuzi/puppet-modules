@@ -6,8 +6,7 @@ setuid <%= user %>
 setgid <%= user %>
 
 script
-  cd <%= engine.directory %>
-  export PORT=<%= port %>;  
   . .opdemand
+  cd <%= engine.directory %>
   exec <%= process.command %> >> <%= log_root %>/<%=process.name%>-<%=num%>.log 2>&1
 end script

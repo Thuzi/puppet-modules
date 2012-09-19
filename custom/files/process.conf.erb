@@ -6,8 +6,8 @@ setuid <%= user %>
 setgid <%= user %>
 
 script
-  cd <%= engine.directory %>
-  export PATH=$PATH:<%= engine.directory %>/bin
   . .opdemand
+  export PATH=$PATH:<%= engine.directory %>/bin
+  cd <%= engine.directory %>
   exec <%= process.command %> >> <%= log_root %>/<%=process.name%>-<%=num%>.log 2>&1
 end script

@@ -6,9 +6,8 @@ setuid <%= user %>
 setgid <%= user %>
 
 script
+  . .opdemand
   cd <%= engine.directory %>
   . venv/bin/activate
-  export PORT=<%= port %>;  
-  . .opdemand
   exec <%= process.command %> >> <%= log_root %>/<%=process.name%>-<%=num%>.log 2>&1
 end script
