@@ -7,4 +7,5 @@ $username = "ubuntu",
 $group = "ubuntu",  
 $home = "/home/ubuntu",
 $repository_path = "/home/ubuntu/repo",
-$app_name = "clojure") { } 
+$app_name = "clojure",
+$mode = "production") { } 
