@@ -52,7 +52,7 @@ if ($mobile_rewrite = perform) {
         root <%= public_root %>;
     }
     # serve index.html if they go to root
-    location / {
+    location /index.html {
         root <%= public_root %>;
     }
     error_page 500 502 503 504 /500.html;
