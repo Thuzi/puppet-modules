@@ -38,7 +38,7 @@ class opdemand::app::repository (
     ensure => directory,
     owner => $repository_owner,
     group => $repository_group,
-    mode => 0750,
+    mode => 0755,
     require => Vcsrepo[$repository_path],
   }
   
