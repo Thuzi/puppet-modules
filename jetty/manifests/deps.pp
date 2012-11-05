@@ -24,6 +24,7 @@ class jetty::deps {
   exec { "maven::package":
     command => "mvn package",
     cwd => $repository_path,
+    path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
     user => $username,
     group => $group,
     require => Exec["bin::deploy"],

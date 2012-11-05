@@ -6,10 +6,7 @@ class jetty::install {
   $repository_path = "$jetty::params::repository_path"
   $upstart_template_path = "/var/cache/opdemand/upstart/$jetty::params::app_name"
   
-  # define package names
-  $java_packages = []
-  $jetty_packages = []
-  $packages = [ $java_packages, $jetty_packages ]
+  $packages = [ "maven2" ]
   package { $packages:
     ensure => present,
   }
