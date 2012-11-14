@@ -6,7 +6,7 @@ class rabbitmq::config {
     owner => "root",
     group => "root",
     mode => 0644,
-    content => template("rabbitmq/rabbitmq-env.config.erb"),
+    content => template("rabbitmq/rabbitmq-env.conf.erb"),
     require => Class[Rabbitmq::Install],
   }
 

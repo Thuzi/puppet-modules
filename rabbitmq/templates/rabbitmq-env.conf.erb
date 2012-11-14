@@ -1,6 +1,6 @@
 
 # defaults to empty string, change only to bind to one interface
-#NODE_IP_ADDRESS=<%= scope.lookupvar("rabbitmq::params::bind") %>
+NODE_IP_ADDRESS=<%= scope.lookupvar("rabbitmq::params::bind") %>
 
 # defaults to 5672
 NODE_PORT=<%= scope.lookupvar("rabbitmq::params::port") %>
