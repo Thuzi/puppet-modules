@@ -7,12 +7,3 @@ NODE_PORT=<%= scope.lookupvar("rabbitmq::params::port") %>
 
 # important for clustering defaults to rabbit@$hostname
 NODENAME=<%= scope.lookupvar("rabbitmq::params::nodename") %>
-
-# override for debugging only
-SERVER_ERL_ARGS=<%= scope.lookupvar("rabbitmq::params::erl_args") %>
-
-# advanced options
-CLUSTER_CONFIG_FILE=<%= scope.lookupvar("rabbitmq::params::cluster_config") %>
-LOG_BASE=<%= scope.lookupvar("rabbitmq::params::logdir") %>
-MNESIA_BASE=<%= scope.lookupvar("rabbitmq::params::mnesiadir") %>
-SERVER_START_ARGS=<%= scope.lookupvar("rabbitmq::params::start_args") %>
