@@ -1,12 +1,15 @@
 class rabbitmq::install {
-
-  file { "/var/run/rabbitmq":
-    ensure => directory,
-  }
   
+  apt::source { "rabbitmq":
+    location => "http://www.rabbitmq.com/debian/",
+    release => "testing",
+    repos => "main",
+    key => "http://www.rabbitmq.com/rabbitmq-signing-key-public.asc",
+  }
+    
   package { "rabbitmq-server":
     ensure => latest,
-    require => File["/var/run/rabbitmq"],
+    require => Apt::Source["rabbitmq"],
   }
   
 }

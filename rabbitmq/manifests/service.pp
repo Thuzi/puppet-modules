@@ -5,7 +5,7 @@ class rabbitmq::service {
     hasstatus => true,
     enable    => true,
     require   => Class[Rabbitmq::Config],
-    subscribe => File["/etc/rabbitmq/rabbitmq.conf.d/rabbitmq.config"],
+    subscribe => File["/etc/rabbitmq/rabbitmq-env.conf"],
   }
     
 }
