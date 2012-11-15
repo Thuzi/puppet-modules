@@ -6,9 +6,13 @@ class rabbitmq::install {
     repos => "main",
     key => "http://www.rabbitmq.com/rabbitmq-signing-key-public.asc",
   }
-    
-  package { "rabbitmq-server":
-    ensure => latest,
+
+  # NOTE: use exec instead of package so we can set RUNLEVEL=1
+  # which prevents the rabbitmq-server daemon from starting
+  # on package install, which is currently broken
+  exec { "/usr/bin/apt-get -yq install rabbitmq-server":
+    environment => "RUNLEVEL=1",
+    unless => "/usr/bin/dpkg -l rabbitmq-server | tail -1 | grep ^ii",
     require => Apt::Source["rabbitmq"],
   }
   
