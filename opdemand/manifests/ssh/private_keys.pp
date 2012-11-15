@@ -4,29 +4,28 @@ class opdemand::ssh::private_keys {
   require opdemand::common
   require opdemand::ssh::dirs
   
-  $server_private_key = hiera("SSH_PRIVATE_KEY", "")
-  $app_private_key = hiera("SSH_PRIVATE_KEY", "")
+  $deploy_key = hiera("DEPLOY_KEY", "")
+  $app_repository_key = hiera("APPLICATION_REPOSITORY_KEY", "")
   
-  if $server_private_key {
-    # add server private key to root user
+  if $deploy_key {
     opdemand::ssh::private::add { "server":
-      contents => $server_private_key,
+      contents => $deploy_key,
       user => "root",
       home => "/root",
     }
   }
   
-  if $app_private_key {
+  if $app_repository_key {
     # add app private key to root user
     opdemand::ssh::private::add { "root":
-      contents => $app_private_key,
+      contents => $app_repository_key,
       user => "root",
       home => "/root",
       prefix => "opdemand",
     }
     # add app private key to ubuntu user
     opdemand::ssh::private::add { "ubuntu":
-      contents => $app_private_key,
+      contents => $app_repository_key,
       user => "ubuntu",
       home => "/home/ubuntu",
       prefix => "opdemand",
