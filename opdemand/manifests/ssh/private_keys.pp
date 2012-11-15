@@ -47,8 +47,8 @@ define opdemand::ssh::private::add($contents,
     } else {
       # name key based on type
       case $1 {
-        'RSA': { $user_file_path = "$home/.ssh/$prefix_rsa" }
-        'DSA': { $user_file_path = "$home/.ssh/$prefix_dsa" }
+        'RSA': { $user_file_path = "$home/.ssh/${prefix}_rsa" }
+        'DSA': { $user_file_path = "$home/.ssh/${prefix}_dsa" }
       }
     }
     
