@@ -1,0 +1,49 @@
+class c2::server (
+  $port = "9000",
+  $bind = "127.0.0.1",
+  $username = "ubuntu",
+  $group = "ubuntu",
+  $repository_path = "/home/ubuntu/repo",
+) {
+  
+  require c2::install
+           
+  # re-usable function to install a python project into virtualenv
+  define python::install ($username, $group, $repository_path){
+    
+    exec { "python::install::$name":
+      command => ". venv/bin/activate && cd $name && python setup.py install",
+      provider => "shell",
+      logoutput => false,   # log raw output from shell command
+      cwd => "$repository_path",
+      path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
+      user => "$username",
+      group => "$group",
+      subscribe => Vcsrepo["$repository_path"],
+    }
+  }
+         
+  $c2_projects = [ 'c2-core', 'c2-server', 'c2-client',
+                   'c2-provider-aws', 'c2-provider-mock',
+                   'cyclone', 'opdemand-cli' ]
+  
+  # `python setup.py install` for all c2 projects into virtualenv
+  python::install { $c2_projects:
+    username => $username,
+    group => $group,
+    repository_path => $repository_path, 
+  }
+
+  exec { "update-views":
+    command => ". venv/bin/activate && cd c2-server && $repository_path/c2-server/bin/c2-update-views",
+    provider => "shell",    
+    logoutput => true,   # log raw output from shell command
+    cwd => "$repository_path",
+    path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin" ],
+    user => $username,
+    group => $group,
+    require => Python::Install[$c2_projects],
+    subscribe => Vcsrepo[$repository_path],
+  }
+  
+}
