@@ -8,9 +8,9 @@ class opdemand::c2 {
   $repository_path = hiera("APPLICATION_REPOSITORY_PATH", "/home/ubuntu/repo")
   $app_name = hiera("APPLICATION_NAME", "python")
       
-  class {"c2::install":} ->
-  class {"c2::config":} ->
-  class {"c2::repository":} ->
+  class {"c2::install":}
+  class {"c2::config":}
+  class {"c2::repository":}
   class {"c2::server":} ->
   class {"c2::proxy":} ->
   class {"c2::service":}
