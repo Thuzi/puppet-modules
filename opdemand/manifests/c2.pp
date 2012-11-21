@@ -6,8 +6,9 @@ class opdemand::c2 {
   $group = hiera("APPLICATION_GROUP", "ubuntu")
   $home = hiera("APPLICATION_HOME", "/home/ubuntu")
   $repository_path = hiera("APPLICATION_REPOSITORY_PATH", "/home/ubuntu/repo")
-  $app_name = hiera("APPLICATION_NAME", "python")
-      
+  $app_name = hiera("APPLICATION_NAME", "c2")
+  $service_name = hiera("APPLICATION_SERVICE_NAME", "c2")
+  
   class {"c2::install":
     username => $username,
     group => $group,
@@ -30,10 +31,21 @@ class opdemand::c2 {
     repository_path => $repository_path,
     homedir => $home,
     app_name => $app_name,
+    service_name => $service_name,
     env_path => hiera("OPDEMAND_ENV_PATH", "/var/cache/opdemand/inputs.sh"),
+    # database
+    database_url => hiera("C2_DATABASE_URL"),
+    database_username => hiera("C2_DATABASE_USERNAME"),
+    database_password => hiera("C2_DATABASE_PASSWORD"),
+    # mq
+    mq_hostname => hiera("C2_MQ_HOSTNAME"),
+    mq_port => hiera("C2_MQ_PORT"),
+    mq_username => hiera("C2_MQ_USERNAME"),
+    mq_password => hiera("C2_MQ_PASSWORD"),
     # application
     operators => hiera("C2_OPERATORS"),
     domain_name => hiera("C2_DOMAIN_NAME"),
+    proxy_port => hiera("C2_PROXY_PORT"),
     server_port => hiera("C2_SERVER_PORT"),
     # smtp
     enable_smtp => hiera("C2_ENABLE_SMTP"),
@@ -66,6 +78,7 @@ class opdemand::c2 {
   
   class {"c2::service":
     repository_path => $repository_path,
+    service_name => $service_name,
   }
 
 }
