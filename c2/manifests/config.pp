@@ -15,8 +15,8 @@ class c2::config (
   $smtp_username,
   $smtp_password,
   # github
-  $github_oauth_id,
-  $github_oauth_secret,
+  $github_client_id,
+  $github_client_secret,
   # zendesk
   $zendesk_auth_url,
   $zendesk_auth_token,
