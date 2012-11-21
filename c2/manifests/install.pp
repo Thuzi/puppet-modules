@@ -1,7 +1,7 @@
 class c2::install (
-  $username = "ubuntu",
-  $group = "ubuntu",
-  $repository_path = "/home/ubuntu/repo",  
+  $username,
+  $group,
+  $repository_path,  
 ){
 
   $virtualenv_path = "$repository_path/venv"
@@ -32,6 +32,20 @@ class c2::install (
     require => [ Exec["virtualenv::init"], Vcsrepo[$repository_path] ],
   }
 
+  file { "$repository_path/requirements.txt":
+    ensure => file,
+    owner => $username,
+    group => $group,
+    require => Vcsrepo[$repository_path],
+  }
+  
+  file { "$repository_path/Procfile":
+    ensure => file,
+    owner => $username,
+    group => $group,
+    require => Vcsrepo[$repository_path],
+  }
+    
   # pip install
   exec { "pip::install":
     command => "/bin/bash -c 'source $virtualenv_path/bin/activate && pip install -r requirements.txt'",
@@ -39,7 +53,7 @@ class c2::install (
     user => $username,
     group => $group,
     require => Exec["virtualenv::init"],
-    subscribe => Vcsrepo[$repository_path],
+    subscribe => File["$repository_path/requirements.txt"],
   }
   
   # create define for upstart template installation

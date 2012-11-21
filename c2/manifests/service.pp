@@ -1,6 +1,4 @@
-class c2::service (
-  $repository_path = "/home/ubuntu/repo"
-){
+class c2::service ($repository_path){
     
   service {"c2":
     ensure    => running,

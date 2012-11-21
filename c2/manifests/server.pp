@@ -1,9 +1,7 @@
 class c2::server (
-  $port = "9000",
-  $bind = "127.0.0.1",
-  $username = "ubuntu",
-  $group = "ubuntu",
-  $repository_path = "/home/ubuntu/repo",
+  $username,
+  $group,
+  $repository_path,
 ) {
   
   require c2::install

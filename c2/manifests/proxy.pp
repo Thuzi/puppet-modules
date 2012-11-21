@@ -1,7 +1,7 @@
 class c2::proxy (
-  $username = "ubuntu",
-  $group = "ubuntu",
-  $repository_path = "/home/ubuntu/repo",  
+  $username,
+  $group,
+  $repository_path,  
 ) {
     
   $node_ppa = "ppa:chris-lea/node.js"

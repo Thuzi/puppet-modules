@@ -1,12 +1,14 @@
-C2_OPERATORS: <%= @c2_operators %>
+C2_OPERATORS: <%= @operators %>
 
 # url settings
-COOKIE_DOMAIN: <%= @cookie_domain %>
-C2SERVER_URL: http://<%= @cookie_domain %>:<%= @port %>
-C2PROXY_URL: http://<%= @cookie_domain %>:<%= @port %>
+COOKIE_DOMAIN: <%= @domain_name %>
+C2SERVER_URL: http://<%= @domain_name %>:<%= @server_port %>
+C2PROXY_URL: http://<%= @domain_name %>:<%= @proxy_port %>
 
 # smtp settings
 ENABLE_SMTP: <%= @enable_smtp %>
+SMTP_HOST: <%= @smtp_hostname %>
+SMTP_USERNAME: <%= @smtp_username %>
 SMTP_PASSWORD: <%= @smtp_password %>
 
 # zendesk settings
@@ -14,8 +16,8 @@ ZENDESK_AUTH_URL: <%= @zendesk_auth_url %>
 ZENDESK_AUTH_TOKEN: <%= @zendesk_auth_token %>
 
 # oauth config for github/c2 development
-OAUTH_CLIENT_ID: <%= @github_oauth_id %>
-OAUTH_CLIENT_SECRET: <%= @github_oauth_secret %>
+OAUTH_CLIENT_ID: <%= @github_client_id %>
+OAUTH_CLIENT_SECRET: <%= @github_client_secret %>
 
 # chargify settings
 CHARGIFY_URL: <%= @chargify_url %>
