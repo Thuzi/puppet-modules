@@ -7,6 +7,7 @@ class c2::config (
   $env_path,
   # app settings
   $operators,
+  $domain_name,
   $server_port,
   $proxy_port,
   # chargify
