@@ -54,7 +54,7 @@ if ($mobile_rewrite = perform) {
         proxy_pass http://listeners;
     }
 
-    rewrite  ^/(\?.*)?$  /index.html$1  permanent;
+    rewrite  ^/(\?.*)?$  https://$host/index.html$1  permanent;
 
     # add error page support
     error_page 404 /404.html;
