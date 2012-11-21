@@ -4,6 +4,9 @@ class couchdb::config {
 
   file {"/etc/couchdb/local.ini":
     content => template("couchdb/local.ini.erb"),
+    owner => "couchdb",
+    group => "couchdb",
+    mode    => 0640,
     require => Class[Couchdb::Install],
   }
   
