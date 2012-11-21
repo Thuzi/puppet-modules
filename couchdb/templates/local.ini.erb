@@ -1,3 +1,8 @@
 [httpd]
 port = <%= scope.lookupvar("couchdb::params::port") %>
 bind_address = <%= scope.lookupvar("couchdb::params::bind") %>
+
+<% if scope.lookupvar("couchdb::params::username") %>
+[admins]
+<%= scope.lookupvar("couchdb::params::username") %> = <%= scope.lookupvar("couchdb::params::password") %>
+<% end %>

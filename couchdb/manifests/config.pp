@@ -6,11 +6,12 @@ class couchdb::config {
     content => template("couchdb/local.ini.erb"),
     require => Class[Couchdb::Install],
   }
-
-  # Overwrite init.d script to respect ENABLE_SERVER flag
+  
   file {"/etc/init.d/couchdb":
     content => template("couchdb/couchdb.erb"),
-    mode    => 0755,
+    owner => "couchdb",
+    group => "couchdb",
+    mode    => 0750,
     require => Class[Couchdb::Install],
   }
 
