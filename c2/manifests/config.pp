@@ -4,12 +4,22 @@ class c2::config (
   $repository_path,  
   $homedir,
   $app_name,
+  $service_name,
   $env_path,
   # app settings
   $operators,
   $domain_name,
   $server_port,
   $proxy_port,
+  # database
+  $database_url,
+  $database_username,
+  $database_password,
+  #mq
+  $mq_hostname,
+  $mq_port,
+  $mq_username,
+  $mq_password,
   # chargify
   $enable_smtp,
   $smtp_hostname,
@@ -30,11 +40,11 @@ class c2::config (
   exec {"rebuild-upstart":
     path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
     cwd => $repository_path,
-    command => "foreman export upstart /etc/init -a $app_name -u $username -e $env_path -t /var/cache/opdemand",
+    command => "foreman export upstart /etc/init -a $service_name -u $username -e $env_path -t /var/cache/opdemand",
     # rebuild on change of inputs.sh or the vcsrepo
     subscribe => [ File[$env_path], File["$repository_path/Procfile"] ],
     # notify the service on change
-    notify => Service[$app_name],
+    notify => Service["$service_name"],
   }
   
   file {"$homedir/.c2":

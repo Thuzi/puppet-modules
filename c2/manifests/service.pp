@@ -1,6 +1,8 @@
-class c2::service ($repository_path){
-    
-  service {"c2":
+class c2::service (
+  $repository_path,
+  $service_name){
+  
+  service {"$service_name":
     ensure    => running,
     hasstatus => true,
     enable    => true,

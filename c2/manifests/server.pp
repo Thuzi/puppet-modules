@@ -32,8 +32,8 @@ class c2::server (
     repository_path => $repository_path, 
   }
 
-  exec { "update-views":
-    command => ". venv/bin/activate && cd c2-server && $repository_path/c2-server/bin/c2-update-views",
+  exec { "c2-init":
+    command => ". venv/bin/activate && cd c2-server && $repository_path/c2-server/bin/c2-init",
     provider => "shell",    
     logoutput => true,   # log raw output from shell command
     cwd => "$repository_path",
@@ -41,6 +41,18 @@ class c2::server (
     user => $username,
     group => $group,
     require => Python::Install[$c2_projects],
+    subscribe => Vcsrepo[$repository_path],
+  }
+  
+  exec { "c2-update-views":
+    command => ". venv/bin/activate && cd c2-server && $repository_path/c2-server/bin/c2-update-views",
+    provider => "shell",    
+    logoutput => true,   # log raw output from shell command
+    cwd => "$repository_path",
+    path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin" ],
+    user => $username,
+    group => $group,
+    require => Exec["c2-init"],
     subscribe => Vcsrepo[$repository_path],
   }
   
