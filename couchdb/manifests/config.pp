@@ -11,6 +11,7 @@ class couchdb::config {
   file {"/etc/init.d/couchdb":
     content => template("couchdb/couchdb.erb"),
     mode    => 0755,
+    require => Class[Couchdb::Install],
   }
 
 }
