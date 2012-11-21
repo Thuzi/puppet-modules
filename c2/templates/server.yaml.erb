@@ -1,4 +1,4 @@
-C2_OPERATORS: <%= @operators %>
+C2_OPERATORS: [ <% @operators.each do |val| -%> "<%= val %>", <% end -%> ]
 
 # url settings
 COOKIE_DOMAIN: <%= @domain_name %>
@@ -6,15 +6,15 @@ C2SERVER_URL: http://<%= @domain_name %>:<%= @server_port %>
 C2PROXY_URL: http://<%= @domain_name %>:<%= @proxy_port %>
 
 # database settings
-DATABASE_URL =  <%= @database_url %>
-DATABASE_USERNAME =  <%= @database_username %>
-DATABASE_PASSWORD =  <%= @database_password %>
+DATABASE_URL: <%= @database_url %>
+DATABASE_USERNAME = <%= @database_username %>
+DATABASE_PASSWORD: <%= @database_password %>
 
 # mq settings
-RABBITMQ_HOST= <%= @mq_hostname %>
-RABBITMQ_PORT= <%= @mq_port %>
-RABBITMQ_USER = <%= @mq_username %>
-RABBITMQ_PASS = <%= @mq_password %>
+RABBITMQ_HOST: <%= @mq_hostname %>
+RABBITMQ_PORT: <%= @mq_port %>
+RABBITMQ_USER: <%= @mq_username %>
+RABBITMQ_PASS: <%= @mq_password %>
 
 # smtp settings
 ENABLE_SMTP: <%= @enable_smtp %>
