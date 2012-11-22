@@ -11,3 +11,6 @@ require_valid_user = true
 [admins]
 <%= scope.lookupvar("couchdb::params::username") %> = <%= scope.lookupvar("couchdb::params::password") %>
 <% end %>
+
+[native_query_servers]
+erlang = {couch_native_process, start_link, []}
