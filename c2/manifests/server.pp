@@ -35,7 +35,7 @@ class c2::server (
   exec { "c2-init":
     command => ". venv/bin/activate && cd c2-server && $repository_path/c2-server/bin/c2-init",
     provider => "shell",    
-    logoutput => true,   # log raw output from shell command
+    logoutput => false,   # log raw output from shell command
     cwd => "$repository_path",
     path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin" ],
     user => $username,
@@ -47,7 +47,7 @@ class c2::server (
   exec { "c2-update-views":
     command => ". venv/bin/activate && cd c2-server && $repository_path/c2-server/bin/c2-update-views",
     provider => "shell",    
-    logoutput => true,   # log raw output from shell command
+    logoutput => false,   # log raw output from shell command
     cwd => "$repository_path",
     path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin" ],
     user => $username,
