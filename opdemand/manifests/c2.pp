@@ -65,6 +65,9 @@ class opdemand::c2 {
 
   # install these modules in order
   class {"c2::monitor": 
+    username => $username,
+    group => $group,
+    repository_path => $repository_path,
   } ->
   
   class {"c2::server":
