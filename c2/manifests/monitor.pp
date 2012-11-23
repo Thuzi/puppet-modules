@@ -16,7 +16,7 @@ class c2::monitor (
   }
   
   exec { "rebar::compile":
-    command => "bin/rebar get-deps compile",
+    command => "$repository_path/c2-monitor/bin/rebar get-deps compile",
     logoutput => false,   # log raw output from shell command
     cwd => "$repository_path/c2-monitor",
     path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
