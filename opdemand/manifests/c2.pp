@@ -62,8 +62,11 @@ class opdemand::c2 {
     chargify_url => hiera("C2_CHARGIFY_URL"),
     chargify_apikey => hiera("C2_CHARGIFY_APIKEY"),
   }
-    
+
   # install these modules in order
+  class {"c2::monitor": 
+  } ->
+  
   class {"c2::server":
     username => $username,
     group => $group,
