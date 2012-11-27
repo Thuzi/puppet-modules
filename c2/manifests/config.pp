@@ -9,8 +9,8 @@ class c2::config (
   # app settings
   $operators,
   $domain_name,
-  $server_port,
-  $proxy_port,
+  $server_url,
+  $proxy_url,
   # database
   $database_url,
   $database_username,
