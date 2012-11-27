@@ -2,8 +2,8 @@ C2_OPERATORS: [ <% @operators.each do |val| -%>"<%= val %>", <% end -%> ]
 
 # url settings
 COOKIE_DOMAIN: <%= @domain_name %>
-C2SERVER_URL: http://<%= @domain_name %>:<%= @server_port %>
-C2PROXY_URL: http://<%= @domain_name %>:<%= @proxy_port %>
+C2SERVER_URL: <%= @server_url %>
+C2PROXY_URL: <%= @proxy_url %>
 
 # database settings
 DATABASE_URL: <%= @database_url %>

@@ -45,8 +45,8 @@ class opdemand::c2 {
     # application
     operators => hiera("C2_OPERATORS"),
     domain_name => hiera("C2_DOMAIN_NAME"),
-    proxy_port => hiera("C2_PROXY_PORT"),
-    server_port => hiera("C2_SERVER_PORT"),
+    proxy_url => hiera("C2_PROXY_URL"),
+    server_url => hiera("C2_SERVER_URL"),
     # smtp
     enable_smtp => hiera("C2_ENABLE_SMTP"),
     smtp_hostname => hiera("C2_SMTP_HOSTNAME"),
