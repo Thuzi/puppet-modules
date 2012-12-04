@@ -15,7 +15,7 @@ define mysql::createuser($passwd, $host = "%") {
   sqlexec{ createuser:
     username => "root",
     database => "mysql",
-    sql      => "GRANT ALL PRIVILEGES ON ${name}.* to '${name}'@'${host}' IDENTIFIED BY '${passwd}';",
+    sql      => "GRANT ALL PRIVILEGES ON ${name}.* to '${name}'@'${host}' IDENTIFIED BY '${passwd}'; GRANT ALL PRIVILEGES ON ${name}.* to '${name}'@'localhost' IDENTIFIED BY '${passwd}';",
     sqlcheck => "\"SELECT user FROM mysql.user WHERE user='${name}';\" | grep ${name}",
   }
 }
