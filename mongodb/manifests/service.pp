@@ -4,7 +4,7 @@ class mongodb::service {
   service { "mongodb":
     enable => true,
     ensure => running,
-    require => Package["$mongodb::params::package"],
+    require => Class[Mongodb::Install],
   }
   
 }
