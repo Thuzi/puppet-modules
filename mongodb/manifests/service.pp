@@ -14,6 +14,7 @@ class mongodb::service (
   if $replSet {
     # replication config
     exec { "rs.initiate":
+      logoutput => true,
       command => 'mongo --eval "printjson(rs.initiate())"',
       cwd => "/root",
       path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
