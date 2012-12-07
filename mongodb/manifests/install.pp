@@ -49,7 +49,7 @@ class mongodb::install {
     require => Exec["10gen-apt-key"],
   }
 
-  package { "mongodb-10gen":
+  package { "mongodb":
     ensure => installed,
     require => Exec["update-apt"],
   }
