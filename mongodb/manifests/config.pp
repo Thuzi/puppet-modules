@@ -21,5 +21,5 @@ class mongodb::config (
     mode => "0644",
     notify => Service["mongodb"],
   }
-    
+  
 }
