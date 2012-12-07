@@ -20,6 +20,8 @@ class mongodb::service (
       path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
       user => "root",
       group => "root",
+      tries => 3,
+      try_sleep => 10,
       unless => 'mongo --eval "printjson(rs.status())" | grep "\"ok\" : 1"',
       require => Service["mongodb"],
     }
