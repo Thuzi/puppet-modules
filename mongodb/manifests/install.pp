@@ -19,7 +19,6 @@
 #
 
 $repository = "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen"
-$package_name = "mongodb"
 
 class mongodb::install {
   
@@ -50,11 +49,8 @@ class mongodb::install {
     require => Exec["10gen-apt-key"],
   }
 
-  # NOTE: use exec instead of package so we can set RUNLEVEL=1
-  # which prevents the package daemon from starting on install
-  exec { "/usr/bin/apt-get -yq install $package_name":
-    environment => "RUNLEVEL=1",
-    unless => "/usr/bin/dpkg -l $package_name | tail -1 | grep ^ii",
+  package { "mongodb":
+    ensure => installed,
     require => Exec["update-apt"],
   }
 
