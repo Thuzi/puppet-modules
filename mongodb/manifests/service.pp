@@ -4,11 +4,21 @@ class mongodb::service (
   $replSet = hiera("MONGODB_SERVER_REPLSET", ""),  
 ){
 
+  $app_name = "mongodb"
+  
   # service definition
-  service { "mongodb":
+  service { "$app_name":
     enable => true,
     ensure => running,
     require => Class[Mongodb::Install],
+  }
+  
+  # mongodb service is slow to start first time, we must wait for it
+  exec { "wait for $app_name":
+    command => "/usr/bin/mongo",
+    tries => 12,
+    try_sleep => 10,
+    require => Service[$app_name],
   }
   
   if $replSet {
