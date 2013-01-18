@@ -1,7 +1,8 @@
 class mongodb::service (
   $username = hiera("MONGODB_SERVER_USERNAME", ""),
   $password = hiera("MONGODB_SERVER_PASSWORD", ""), 
-  $replSet = hiera("MONGODB_SERVER_REPLSET", ""),  
+  $replSet = hiera("MONGODB_SERVER_REPLSET", ""),
+  $members = hiera("MONGODB_SERVER_MEMBERS", []),  
 ){
 
   $app_name = "mongodb"
@@ -25,7 +26,8 @@ class mongodb::service (
     # replication config
     exec { "rs.initiate":
       logoutput => true,
-      command => 'mongo --eval "printjson(rs.initiate())"',
+      #command => 'mongo --eval "printjson(rs.initiate())"',
+      command => template("mongodb/rs-initiate.erb"),
       cwd => "/root",
       path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
       user => "root",
