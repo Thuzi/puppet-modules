@@ -22,7 +22,7 @@ class c2::server (
   }
          
   $c2_projects = [ 'c2-core', 'c2-server', 'c2-client',
-                   'c2-provider-aws', 'c2-provider-mock',
+                   'c2-provider-aws', 'c2-provider-mock', 'c2-provider-heroku',
                    'cyclone', 'opdemand-cli' ]
   
   # `python setup.py install` for all c2 projects into virtualenv

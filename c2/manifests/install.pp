@@ -5,7 +5,7 @@ class c2::install (
 ){
 
   $virtualenv_path = "$repository_path/venv"
-  $packages = [ "gcc", "python-dev", "libzmq-dev", "python-virtualenv", "python-pip" ]
+  $packages = [ "gcc", "python-dev", "libzmq-dev", "python-virtualenv", "python-pip", "mercurial" ]
   
   package { $packages:
     ensure => latest,
