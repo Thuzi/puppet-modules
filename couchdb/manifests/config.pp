@@ -1,6 +1,10 @@
-class couchdb::config {
-
-  require couchdb::params
+class couchdb::config (
+    allow_cidr => hiera("COUCHDB_ALLOW_CIDR", "0.0.0.0/0"),
+    bind => hiera("COUCHDB_SERVER_BIND", "0.0.0.0"),
+    port => hiera("COUCHDB_SERVER_PORT", "5984"),
+    username => hiera("COUCHDB_SERVER_USERNAME", ""),
+    password => hiera("COUCHDB_SERVER_PASSWORD", ""),
+){
 
   file {"/etc/couchdb/local.ini":
     content => template("couchdb/local.ini.erb"),
