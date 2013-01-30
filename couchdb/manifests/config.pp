@@ -1,9 +1,9 @@
 class couchdb::config (
-    allow_cidr => hiera("COUCHDB_ALLOW_CIDR", "0.0.0.0/0"),
-    bind => hiera("COUCHDB_SERVER_BIND", "0.0.0.0"),
-    port => hiera("COUCHDB_SERVER_PORT", "5984"),
-    username => hiera("COUCHDB_SERVER_USERNAME", ""),
-    password => hiera("COUCHDB_SERVER_PASSWORD", ""),
+    $allow_cidr = "0.0.0.0/0",
+    $bind = "0.0.0.0",
+    $port = "5984",
+    $username = "",
+    $password = "",
 ){
 
   file {"/etc/couchdb/local.ini":
