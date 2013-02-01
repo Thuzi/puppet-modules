@@ -1,7 +1,7 @@
 class postgres::config  (
   $port = "5432",
   $allow_cidr = "0.0.0.0/0",
-  $bind = "127.0.0.1", 			# use "*" to bind to all interfaces
+  $bind = "localhost", 			# use "*" to bind to all interfaces
   $username = "",
   $password = "",
   $db_name = "") {

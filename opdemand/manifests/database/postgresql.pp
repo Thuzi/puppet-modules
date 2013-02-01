@@ -5,7 +5,7 @@ class opdemand::database::postgresql {
   
   class {"postgres::config":
   	port => hiera("POSTGRES_SERVER_PORT", 5432),
-    bind => hiera("POSTGRES_SERVER_BIND", "127.0.0.1"), # use "*" to bind to all interfaces
+    bind => hiera("POSTGRES_SERVER_BIND", "localhost"), # use "*" to bind to all interfaces
     allow_cidr => hiera("POSTGRES_SERVER_ALLOW", "0.0.0.0/0"),
     username => hiera("POSTGRES_SERVER_USERNAME", ""),
     password => hiera("POSTGRES_SERVER_PASSWORD", ""),
