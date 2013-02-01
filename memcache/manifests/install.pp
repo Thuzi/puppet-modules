@@ -1,5 +1,4 @@
-class memcache::install (
-) {
+class memcached::install {
 
   package {"memcached":
     ensure => latest,
