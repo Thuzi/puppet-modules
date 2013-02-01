@@ -2,15 +2,13 @@ class opdemand::cache::redis {
 
   require opdemand::common
 
-  # initialize dynamic parameters
-  class {"redis::params":
-    bind => hiera("CACHE_BIND", "0.0.0.0"),
-    port => hiera("CACHE_PORT", "6379"),
+  class {"redis::config":
+  	port => hiera("REDIS_SERVER_PORT", "6379"),
+    bind => hiera("REDIS_SERVER_BIND", "127.0.0.1"),
+    password => hiera("REDIS_SERVER_PASSWORD", ""),
   }
   
-  # include relevant classes
   include redis::install
-  include redis::config
   include redis::service
   
 }
