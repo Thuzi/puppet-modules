@@ -1,9 +1,9 @@
 class mysql::config (
   $port = "3306",
-  $bind = "0.0.0.0",
-  $username = "mysqluser",
-  $password = "changeme123",
-  $db_name = "mysqluser",
+  $bind = "127.0.0.1",
+  $username = "",
+  $password = "",
+  $db_name = "",
 ){
   
   file {"/etc/mysql/my.cnf":
@@ -14,14 +14,17 @@ class mysql::config (
     require => Class["Mysql::Install"],
   }
 
-  # create database user
-  mysql::createuser{ $username:
-    passwd => $password,
-  } ->
+  if ($username && $password && $db_name) {
   
-  # create separate database for this user
-  mysql::createdb{ $db_name:
-    owner => $db_name,
+	  # create database user
+	  mysql::createuser{ $username:
+	    passwd => $password,
+	  } ->
+	  
+	  # create separate database for this user
+	  mysql::createdb{ $db_name:
+	    owner => $db_name,
+	  }
   }
   
 }
