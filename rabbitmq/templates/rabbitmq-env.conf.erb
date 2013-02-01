@@ -1,9 +1,9 @@
 
 # defaults to empty string, change only to bind to one interface
-NODE_IP_ADDRESS=<%= scope.lookupvar("rabbitmq::params::bind") %>
+NODE_IP_ADDRESS=<%= bind %>
 
 # defaults to 5672
-NODE_PORT=<%= scope.lookupvar("rabbitmq::params::port") %>
+NODE_PORT=<%= port %>
 
 # important for clustering defaults to rabbit@$hostname
-NODENAME=<%= scope.lookupvar("rabbitmq::params::nodename") %>
+NODENAME=<%= nodename %>

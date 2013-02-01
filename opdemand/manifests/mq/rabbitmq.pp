@@ -2,16 +2,13 @@ class opdemand::mq::rabbitmq {
 
   require opdemand::common
 
-  # initialize dynamic parameters
-  class {"rabbitmq::params":
-    bind => hiera("rabbitmq/bind", ""), # defaults to all interfaces
-    port => hiera("rabbitmq/port", 5672),
-    nodename => hiera("rabbitmq/nodename", $hostname),
+  class {"rabbitmq::config"  
+    bind => hiera("RABBITMQ_SERVER_BIND", ""), # defaults to all interfaces
+    port => hiera("RABBITMQ_SERVER_PORT", 5672),
+    nodename => hiera("RABBITMQ_SERVER_NODENAME", $hostname),
   }
 
-  # include relevant classes
   include rabbitmq::install
-  include rabbitmq::config
   include rabbitmq::service
 
 }
