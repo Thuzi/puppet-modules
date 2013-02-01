@@ -11,7 +11,7 @@ class opdemand::database::mongodb {
 	password => hiera("MONGODB_SERVER_PASSWORD", ""), 
 	replSet => hiera("MONGODB_SERVER_REPLSET", ""),
 	members => hiera("MONGODB_SERVER_MEMBERS", []),
-	ulimit_nofile = hiera("MONGODB_SERVER_FDS", "1024"),  	
+	ulimit_nofile => hiera("MONGODB_SERVER_FDS", "1024"),  	
   }
   
   class {"mongodb::service":
