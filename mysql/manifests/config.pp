@@ -15,7 +15,7 @@ class mysql::config (
   }
 
   # only create a user and database if all 3 variables were provided
-  if (! $username) and ( ! $password) and (! $db_name) {
+  if $username and $password and $db_name {
   
 	  # create database user
 	  mysql::createuser{ $username:
