@@ -14,7 +14,8 @@ class mysql::config (
     require => Class["Mysql::Install"],
   }
 
-  if ($username && $password && $db_name) {
+  # only create a user and database if all 3 variables were provided
+  if (! $username) && ( ! $password) && (! $db_name) {
   
 	  # create database user
 	  mysql::createuser{ $username:
@@ -23,7 +24,7 @@ class mysql::config (
 	  
 	  # create separate database for this user
 	  mysql::createdb{ $db_name:
-	    owner => $db_name,
+	    owner => $username,
 	  }
   }
   
