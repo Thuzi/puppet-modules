@@ -1,12 +1,12 @@
 class mongodb::config (
-  $port = hiera("MONGODB_SERVER_PORT", "27017"),
-  $bind_ip = hiera("MONGODB_SERVER_BIND", "0.0.0.0"),
-  $username = hiera("MONGODB_SERVER_USERNAME", ""),
-  $password = hiera("MONGODB_SERVER_PASSWORD", ""), 
-  $replSet = hiera("MONGODB_SERVER_REPLSET", ""),
-  $members = hiera("MONGODB_SERVER_MEMBERS", []),
-  $ulimit_nofile = hiera("MONGODB_SERVER_ULIMIT", "1024"),
-){
+  $port = "27017",
+  $bind = "127.0.0.1",
+  $username = "",
+  $password = "", 
+  $replSet = "",
+  $members = [],
+  $ulimit_nofile = "1024",
+) {
   
   # upstart conf file
   file { "/etc/init/mongodb.conf":

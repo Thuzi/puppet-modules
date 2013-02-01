@@ -1,9 +1,7 @@
 class mongodb::service (
-  $username = hiera("MONGODB_SERVER_USERNAME", ""),
-  $password = hiera("MONGODB_SERVER_PASSWORD", ""), 
-  $replSet = hiera("MONGODB_SERVER_REPLSET", ""),
-  $members = hiera("MONGODB_SERVER_MEMBERS", []),  
-){
+  $replSet = "",
+  $members = [],  
+) {
 
   $app_name = "mongodb"
   
