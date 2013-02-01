@@ -85,7 +85,7 @@
 local   all             postgres                                peer
 
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
-host all all <%= scope.lookupvar("postgres::params::allow_cidr") %> md5
+host all all <%= allow_cidr %> md5
 
 # "local" is for Unix domain socket connections only
 local   all             all                                     peer

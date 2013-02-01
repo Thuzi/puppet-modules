@@ -1,6 +1,10 @@
-class postgres::config {
-
-  require postgres::params
+class postgres::config  (
+  $port = "5432",
+  $allow_cidr = "0.0.0.0/0",
+  $bind = "127.0.0.1", 			# use "*" to bind to all interfaces
+  $username = "",
+  $password = "",
+  $db_name = "") {
   
   file {"/etc/postgresql/9.1/main/postgresql.conf":
     content => template("postgres/postgresql.conf.erb"),
@@ -17,16 +21,20 @@ class postgres::config {
     notify => Service["postgresql"],
     require => Package["postgresql"],
   }
+
+  # only create a user and database if all 3 variables were provided
+  if $username and $password and $db_name {
   
-  # create database user
-  postgres::createuser{ $postgres::params::username:
-    passwd => $postgres::params::password,
-  } ->
-  
-  # create separate database for this user
-  postgres::createdb{ $postgres::params::username:
-    owner => $postgres::params::username,
-  }
+	  # create database user
+	  postgres::createuser{ $username:
+	    passwd => $password,
+	  } ->
+	  
+	  # create separate database for this user
+	  postgres::createdb{ $db_name:
+	    owner => $username,
+  	  }
+   }
   
 }
 

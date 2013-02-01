@@ -1,28 +1,18 @@
 
 class opdemand::database::postgresql {
   
-  # require opdemand common
   require opdemand::common
   
-  # parameterized inputs default to hiera then second arg
-  # initialize dynamic parameters
-  class {"postgres::params":
-    bind => hiera("DATABASE_LISTEN", "*"),
-    port => hiera("DATABASE_PORT", 5432),
-    allow_cidr => hiera("DATABASE_ALLOW_CIDR", "0.0.0.0/0"),
-    username => hiera("DATABASE_USERNAME", "pguser"),
-    password => hiera("DATABASE_PASSWORD", "changeme123"),
+  class {"postgres::config":
+  	port => hiera("POSTGRES_SERVER_PORT", 5432),
+    bind => hiera("POSTGRES_SERVER_BIND", "127.0.0.1"), # use "*" to bind to all interfaces
+    allow_cidr => hiera("POSTGRES_SERVER_ALLOW", "0.0.0.0/0"),
+    username => hiera("POSTGRES_SERVER_USERNAME", ""),
+    password => hiera("POSTGRES_SERVER_PASSWORD", ""),
+    db_name => hiera("POSTGRES_SERVER_DBNAME", ""),
   }
 
-  # install and configure postgres
   include postgres::install
-  include postgres::config
   include postgres::service
 
-  # # output dynamic orchestration values
-  # opdemand::output {"DATABASE_HOST": 
-     # key => "DATABASE_HOST",
-     # value => $ec2_public_hostname,
-  # }
-  
 }
