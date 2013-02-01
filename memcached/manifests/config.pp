@@ -1,8 +1,8 @@
 class memcached::config (
   $port = "6379",
   $bind = "127.0.0.1",
-  $username = "memcache",
-  $size = "256") {
+  $daemon_user = "memcache",
+  $memory = "256") {
     
   file {"/etc/memcached.conf":
     owner => "root",
