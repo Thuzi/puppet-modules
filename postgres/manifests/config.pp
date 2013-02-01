@@ -8,16 +8,16 @@ class postgres::config  (
   
   file {"/etc/postgresql/9.1/main/postgresql.conf":
     content => template("postgres/postgresql.conf.erb"),
-    owner => "root",
-    group => "root",
+    owner => "postgres",
+    group => "postgres",
     notify => Service["postgresql"],
     require => Package["postgresql"],
   }
 
   file { "/etc/postgresql/9.1/main/pg_hba.conf":
     content => template("postgres/pg_hba.conf.erb"),  
-    owner  => "root",
-    group  => "root",
+    owner  => "postgres",
+    group  => "postgres",
     notify => Service["postgresql"],
     require => Package["postgresql"],
   }
