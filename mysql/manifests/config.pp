@@ -1,6 +1,10 @@
-class mysql::config {
-
-  require mysql::params
+class mysql::config (
+  $port = "3306",
+  $bind = "0.0.0.0",
+  $username = "mysqluser",
+  $password = "changeme123",
+  $db_name = "mysqluser",
+){
   
   file {"/etc/mysql/my.cnf":
     content => template("mysql/my.cnf.erb"),
@@ -11,13 +15,13 @@ class mysql::config {
   }
 
   # create database user
-  mysql::createuser{ $mysql::params::username:
-    passwd => $mysql::params::password,
+  mysql::createuser{ $username:
+    passwd => $password,
   } ->
   
   # create separate database for this user
-  mysql::createdb{ $mysql::params::username:
-    owner => $mysql::params::username,
+  mysql::createdb{ $db_name:
+    owner => $db_name,
   }
   
 }
