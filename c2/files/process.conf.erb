@@ -8,6 +8,7 @@ setgid <%= user %>
 script
   . /home/ubuntu/.opdemand
   export HOME=/home/ubuntu
+  export PORT=<%= port %>
   cd <%= engine.directory %>
   . venv/bin/activate
   exec <%= process.command %> >> <%= log_root %>/<%=process.name%>-<%=num%>.log 2>&1
