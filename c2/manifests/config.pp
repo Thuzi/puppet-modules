@@ -6,6 +6,8 @@ class c2::config (
   $app_name,
   $service_name,
   $env_path,
+  $start_port,
+  $concurrency,
   # app settings
   $operators,
   $domain_name,
@@ -40,7 +42,7 @@ class c2::config (
   exec {"rebuild-upstart":
     path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
     cwd => $repository_path,
-    command => "foreman export upstart /etc/init -a $service_name -u $username -e $env_path -t /var/cache/opdemand",
+    command => "foreman export upstart /etc/init -a $service_name -u $username -e $env_path -t /var/cache/opdemand -p $start_port -c $concurrency",
     # rebuild on change of inputs.sh or the vcsrepo
     subscribe => [ File[$env_path], File["$repository_path/Procfile"] ],
     # notify the service on change

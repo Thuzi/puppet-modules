@@ -33,6 +33,8 @@ class opdemand::c2 {
     app_name => $app_name,
     service_name => $service_name,
     env_path => hiera("OPDEMAND_ENV_PATH", "/var/cache/opdemand/inputs.sh"),
+    start_port => hiera("C2_START_PORT", 8000),
+    concurrency => hiera("C2_CONCURRENCY", "proxy=1,server=1,monitor=1,worker=1"),
     # database
     database_url => hiera("C2_DATABASE_URL"),
     database_username => hiera("C2_DATABASE_USERNAME"),
