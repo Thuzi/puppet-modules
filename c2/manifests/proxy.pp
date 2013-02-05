@@ -11,7 +11,7 @@ class c2::proxy (
   apt::ppa {$node_ppa:}
     
   package { $packages:
-    ensure => present,
+    ensure => latest,
     require => Apt::Ppa[$node_ppa],
   }
 
