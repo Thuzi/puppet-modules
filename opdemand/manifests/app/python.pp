@@ -12,7 +12,8 @@ class opdemand::app::python {
     repository_path => hiera("APPLICATION_REPOSITORY_PATH", "/home/ubuntu/repo"),
     app_name => hiera("APPLICATION_NAME", "python"),
     num_listeners => hiera("APPLICATION_LISTENERS", 1),
-    port => hiera("APPLICATION_PORT", 8000),
+    port => hiera("APPLICATION_PORT", 5000),
+    concurrency => hiera("APPLICATION_CONCURRENCY", "web=1"),    
   }
 
   # include relevant python classes

@@ -12,6 +12,7 @@ class opdemand::app::clojure {
     repository_path => hiera("APPLICATION_REPOSITORY_PATH", "/home/ubuntu/repo"),
     app_name => hiera("APPLICATION_NAME", "clojure"),
     port => hiera("APPLICATION_PORT", 5000),
+    concurrency => hiera("APPLICATION_CONCURRENCY", "web=1"),
     mode => hiera("APPLICATION_MODE", "production"),
   }
 

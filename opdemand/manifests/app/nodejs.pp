@@ -11,6 +11,8 @@ class opdemand::app::nodejs {
     home => hiera("APPLICATION_HOME", "/home/ubuntu"),
     repository_path => hiera("APPLICATION_REPOSITORY_PATH", "/home/ubuntu/repo"),
     app_name => hiera("APPLICATION_NAME", "nodejs"),
+    concurrency => hiera("APPLICATION_CONCURRENCY", "web=1"),
+    port => hiera("APPLICATION_PORT", 5000),
   }
 
   # include relevant classes
