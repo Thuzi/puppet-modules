@@ -11,7 +11,7 @@ class c2::monitor (
   apt::ppa {$ppa:}
     
   package { $packages:
-    ensure => present,
+    ensure => latest,
     require => Apt::Ppa[$ppa],
   }
   
