@@ -8,5 +8,6 @@ setgid <%= user %>
 script
   . /home/ubuntu/.opdemand
   cd <%= engine.directory %>
+  export PORT=<%= port %>
   exec <%= process.command %> >> <%= log_root %>/<%=process.name%>-<%=num%>.log 2>&1
 end script
