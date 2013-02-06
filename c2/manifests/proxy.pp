@@ -28,7 +28,7 @@ class c2::proxy (
   }
 
   exec { "node::build":
-    command => "node build",
+    command => "node build production",
     logoutput => false,   # log raw output from shell command
     cwd => "$repository_path/c2-frontend",
     environment => "HOME=${repository_path}/../",
