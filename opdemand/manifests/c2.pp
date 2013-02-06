@@ -36,9 +36,9 @@ class opdemand::c2 {
     start_port => hiera("C2_START_PORT", 8000),
     concurrency => hiera("C2_CONCURRENCY", "proxy=1,server=1,monitor=1,worker=1"),
     # database
-    database_url => hiera("C2_DATABASE_URL"),
-    database_username => hiera("C2_DATABASE_USERNAME"),
-    database_password => hiera("C2_DATABASE_PASSWORD"),
+    database_url => hiera("COUCHDB_URL"),
+    database_username => hiera("COUCHDB_USERNAME"),
+    database_password => hiera("COUCHDB_PASSWORD"),
     # mq
     mq_hostname => hiera("C2_MQ_HOSTNAME"),
     mq_port => hiera("C2_MQ_PORT"),
