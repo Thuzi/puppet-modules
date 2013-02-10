@@ -1,2 +1,2 @@
 #!/bin/sh
-sudo -u ubuntu /bin/bash -c "cd <%= @repository_path %> && source venv/bin/activate && c2-server/bin/c2-expire" >/var/log/c2/expire.log 2>&1
+sudo -u ubuntu /bin/bash -c "cd <%= @repository_path %> && source venv/bin/activate && c2-expire" >/var/log/c2/expire.log 2>&1
