@@ -1,0 +1,4 @@
+#!/bin/sh
+cd <%= @repository_path %>
+source venv/bin/activate
+c2-server/bin/c2-check-subscriptions &>/var/log/c2/subscription.log

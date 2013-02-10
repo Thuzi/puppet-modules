@@ -1,0 +1,4 @@
+#!/bin/sh
+cd <%= repository_path %>
+source venv/bin/activate
+sudo -u <%= username %> c2-server/bin/c2-expire &>/var/log/c2/expire.log

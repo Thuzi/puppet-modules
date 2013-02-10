@@ -63,6 +63,18 @@ class c2::config (
     mode => 0600,
     content => template("c2/server.yaml.erb"),
     require => File["$homedir/.c2"],
-  }  
+  }
+
+  # install cron jobs
+  
+  file {"/etc/cron.hourly/expire-sessions":
+    mode => 0700,
+    content => template("c2/expire-sessions.erb"),
+  }
+
+  file {"/etc/cron.daily/check-subscriptions":
+    mode => 0700,
+    content => template("c2/check-subscriptions.erb"),
+  }
 
 }
