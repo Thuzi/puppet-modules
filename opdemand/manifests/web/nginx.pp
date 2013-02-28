@@ -2,20 +2,17 @@ class opdemand::web::nginx {
   
   require opdemand::common
 
-  # initialize dynamic parameters
-  class {"nginx::params":
-    # nginx params
+  class {"nginx::config":
     template_name => hiera("NGINX_TEMPLATE_NAME", "default"),
     public_root => hiera("NGINX_PUBLIC_ROOT", "/home/ubuntu/repo/public"),
-    # application params
-    app_name => hiera("APPLICATION_NAME", "nginx"),
-    start_port => hiera("APPLICATION_PORT", "5000"),
-    num_listeners => hiera("APPLICATION_LISTENERS", 1),
+    nginx_port => hiera("NGINX_PORT", 80),
+    server_name => hiera("NGINX_SERVER_NAME", $ec2_public_hostname),
+    app_name => hiera("NGINX_APP_NAME", "app"),
+    app_port => hiera("NGINX_APP_PORT", "5000"),
+    app_listeners => hiera("NGINX_APP_LISTENERS", 1),
   }
 
-  # include relevant classes
   include nginx::install
-  include nginx::config
   include nginx::service
 
 }
