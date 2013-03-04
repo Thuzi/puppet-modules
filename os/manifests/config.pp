@@ -1,16 +1,28 @@
 class os::config (
-  $hostname = "server",
+  $hostname = "",
   $packages = [],
   $auto_update = "",
   $daily_logs = "",
   $admin_email = "",
 ){
+ 
+  # set hostname if provided
+  if $hostname {
   
-  # set hostname
-  exec { "set-hostname":
-    command => "hostname $hostname",
-    path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
-    unless => "hostname | grep $hostname",
+    file { "/etc/cloud/templates/hosts.tmpl":
+	  ensure => file,    
+	  owner => "root",
+	  group => "root",
+	  mode => 0644,
+	  content => template("os/hosts.tmpl.erb"),
+    }
+    
+    exec { "set-hostname":
+      command => "hostname $hostname",
+      path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
+      unless => "hostname | grep $hostname",
+    }
+    
   }
   
   # install requested packages

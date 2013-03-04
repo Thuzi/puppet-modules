@@ -15,7 +15,7 @@ class opdemand::common {
   
   # install OS module
   class {"os::config":
-    hostname => hiera("OS_HOSTNAME", "server"),
+    hostname => hiera("OS_HOSTNAME", ""),
     packages => hiera("OS_PACKAGES", []),
     auto_update => hiera("OS_AUTO_UPDATE", ""),
     daily_logs => hiera("OS_DAILY_LOGS", ""),
