@@ -44,6 +44,12 @@ class os::config (
 	  require => Package["logwatch"],
     }
     
+  } else {
+
+	file {"/etc/cron.daily/logwatch":
+	  ensure => absent,
+	}
+  
   }
   
   # see if we should install unattended upgrades
@@ -62,6 +68,10 @@ class os::config (
 	  require => Package["unattended-upgrades"],
     }
     
-  }
+  } else {
   
-}
+	file {"/etc/apt/apt.conf.d/10periodic":
+	  ensure => absent,
+	}
+	
+  }
