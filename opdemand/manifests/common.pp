@@ -13,11 +13,15 @@ class opdemand::common {
   class {"opdemand::ssh::known_hosts":} ->
   class {"opdemand::ssh::private_keys":}
   
-  # install OS module
-  class {"os::config":
+  # install OS modules
+  class {"os::hostname":
     hostname => hiera("OS_HOSTNAME", ""),
+  }
+  class {"os::package":  
     packages => hiera("OS_PACKAGES", []),
     auto_update => hiera("OS_AUTO_UPDATE", ""),
+  }
+  class {"os::logwatch":
     daily_logs => hiera("OS_DAILY_LOGS", ""),
     admin_email => hiera("OS_ADMIN_EMAIL", ""),  
   }
