@@ -10,8 +10,9 @@ class os::config (
   exec { "set-hostname":
     command => "hostname $hostname",
     path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
+    provider => shell,
     onlyif => "hostname | grep $hostname",
-  }  
+  }
   
   # install requested packages
   if $packages {
