@@ -14,7 +14,7 @@ class opdemand::common {
   class {"opdemand::ssh::private_keys":}
   
   # install OS module
-  class {"opdemand::os":
+  class {"os::config":
     hostname => hiera("OS_HOSTNAME", "server"),
     packages => hiera("OS_PACKAGES", []),
     auto_update => hiera("OS_AUTO_UPDATE", ""),
