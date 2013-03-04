@@ -29,7 +29,7 @@ class os::config (
   }
   
   # see if we should install logwatch and send daily emails
-  if $daily_logs and $admin_email {
+  if $daily_logs and $daily_logs != "false" and $admin_email {
   
   	package { "logwatch":
       ensure => installed,
@@ -53,7 +53,7 @@ class os::config (
   }
   
   # see if we should install unattended upgrades
-  if $auto_update {
+  if $auto_update and $auto_update != "false" {
   
   	package { "unattended-upgrades":
       ensure => installed,
