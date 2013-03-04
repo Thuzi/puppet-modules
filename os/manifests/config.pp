@@ -9,6 +9,7 @@ class os::config (
   # set hostname
   exec { "set-hostname":
     command => "hostname $hostname",
+    path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
     onlyif => "hostname | grep $hostname",
   }  
   
