@@ -1,17 +1,16 @@
 class opdemand::database::couchdb {
 
   require opdemand::common
-
-  # initialize dynamic parameters
-  class {"couchdb::params":
-    allow_cidr => hiera("database/allow_cidr", "0.0.0.0/0"),
-    bind => hiera("database/bind", "0.0.0.0"),
-    port => hiera("database/port", "5984"),
+  
+  class {"couchdb::config":
+    allow_cidr => hiera("COUCHDB_SERVER_ALLOW", "0.0.0.0/0"),
+    bind => hiera("COUCHDB_SERVER_BIND", "0.0.0.0"),
+    port => hiera("COUCHDB_SERVER_PORT", "5984"),
+    username => hiera("COUCHDB_SERVER_USERNAME", ""),
+    password => hiera("COUCHDB_SERVER_PASSWORD", ""),
   }
   
-  # include relevant classes
-  include couchdb::install
-  include couchdb::config
+  include couchdb::install    
   include couchdb::service
   
 }

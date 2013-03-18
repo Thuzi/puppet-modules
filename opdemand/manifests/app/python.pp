@@ -6,13 +6,14 @@ class opdemand::app::python {
 
   # initialize dynamic parameters
   class {"python::params":
-    username => hiera("application/username", "ubuntu"),
-    group => hiera("application/group", "ubuntu"),
-    home => hiera("application/home", "/home/ubuntu"),
-    repository_path => hiera("application/repository_path", "/home/ubuntu/repo"),
-    app_name => hiera("application/name", "python"),
-    num_listeners => hiera("application/listeners", 1),
-    port => hiera("application/port", 8000),
+    username => hiera("APPLICATION_USERNAME", "ubuntu"),
+    group => hiera("APPLICATION_GROUP", "ubuntu"),
+    home => hiera("APPLICATION_HOME", "/home/ubuntu"),
+    repository_path => hiera("APPLICATION_REPOSITORY_PATH", "/home/ubuntu/repo"),
+    app_name => hiera("APPLICATION_NAME", "python"),
+    num_listeners => hiera("APPLICATION_LISTENERS", 1),
+    port => hiera("APPLICATION_PORT", 5000),
+    concurrency => hiera("APPLICATION_CONCURRENCY", "web=1"),    
   }
 
   # include relevant python classes

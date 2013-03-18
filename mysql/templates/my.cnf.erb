@@ -17,7 +17,7 @@
 # escpecially if they contain "#" chars...
 # Remember to edit /etc/mysql/debian.cnf when changing the socket location.
 [client]
-port        = <%= scope.lookupvar("mysql::params::port") %>
+port        = <%= port %>
 socket      = /var/run/mysqld/mysqld.sock
 
 # Here is entries for some specific programs
@@ -41,7 +41,7 @@ nice        = 0
 
 user        = mysql
 socket      = /var/run/mysqld/mysqld.sock
-port        = <%= scope.lookupvar("mysql::params::port") %>
+port        = <%= port %>
 basedir     = /usr
 datadir     = /var/lib/mysql
 tmpdir      = /tmp
@@ -49,7 +49,7 @@ skip-external-locking
 #
 # Instead of skip-networking the default is now to listen only on
 # localhost which is more compatible and is not less secure.
-bind-address        = <%= scope.lookupvar("mysql::params::bind") %>
+bind-address        = <%= bind %>
 #
 # * Fine Tuning
 #

@@ -1,0 +1,16 @@
+start on starting <%= app %>-<%= process.name %>
+stop on stopping <%= app %>-<%= process.name %>
+respawn
+
+setuid <%= user %>
+setgid <%= user %>
+limit nofile 8192 8192
+
+script
+  . /home/ubuntu/.opdemand
+  export HOME=/home/ubuntu
+  export PORT=<%= port %>
+  cd <%= engine.directory %>
+  . venv/bin/activate
+  exec <%= process.command %> >> <%= log_root %>/<%=process.name%>-<%=num%>.log 2>&1
+end script

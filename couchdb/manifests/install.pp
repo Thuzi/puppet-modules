@@ -1,34 +1,17 @@
 class couchdb::install {
 
+  $package_name = "couchdb"
+  
   # use a more current couchdb version than ubuntu has
   apt::ppa {"ppa:longsleep/couchdb":}
 
-  package {"couchdb":
-    ensure => latest,
+  # NOTE: use exec instead of package so we can set RUNLEVEL=1
+  # which prevents the rabbitmq-server daemon from starting
+  # on package install, which is currently broken
+  exec { "/usr/bin/apt-get -yq install $package_name":
+    environment => "RUNLEVEL=1",
+    unless => "/usr/bin/dpkg -l $package_name | tail -1 | grep ^ii",
     require => Apt::Ppa["ppa:longsleep/couchdb"],
   }
-
-  # work around couchdb package daemon issues in ubuntu 
-  exec {"prevent-daemon-start":
-    command => "echo '
-COUCHDB_USER=couchdb
-COUCHDB_STDOUT_FILE=/dev/null
-COUCHDB_STDERR_FILE=/dev/null
-COUCHDB_RESPAWN_TIMEOUT=5
-COUCHDB_OPTIONS=
-ENABLE_SERVER=0
-' > /etc/default/couchdb",
-    provider => shell,
-  }
-
-  exec {"allow-daemon-start":
-    command => "sed -i -e s/ENABLE_SERVER=0/ENABLE_SERVER=1/ /etc/default/couchdb",
-    provider => shell,
-  }
-
-  # order deps to work around packaging issue
-  Exec["prevent-daemon-start"] ->
-  Package["couchdb"] ->
-  Exec["allow-daemon-start"]
 
 }

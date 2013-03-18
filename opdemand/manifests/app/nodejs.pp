@@ -6,11 +6,13 @@ class opdemand::app::nodejs {
   
   # initialize dynamic parameters
   class {"nodejs::params":
-    username => hiera("application/username", "ubuntu"),
-    group => hiera("application/group", "ubuntu"),
-    home => hiera("application/home", "/home/ubuntu"),
-    repository_path => hiera("application/repository_path", "/home/ubuntu/repo"),
-    app_name => hiera("application/name", "nodejs"),
+    username => hiera("APPLICATION_USERNAME", "ubuntu"),
+    group => hiera("APPLICATION_GROUP", "ubuntu"),
+    home => hiera("APPLICATION_HOME", "/home/ubuntu"),
+    repository_path => hiera("APPLICATION_REPOSITORY_PATH", "/home/ubuntu/repo"),
+    app_name => hiera("APPLICATION_NAME", "nodejs"),
+    concurrency => hiera("APPLICATION_CONCURRENCY", "web=1"),
+    port => hiera("APPLICATION_PORT", 5000),
   }
 
   # include relevant classes

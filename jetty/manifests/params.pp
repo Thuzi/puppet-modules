@@ -4,5 +4,6 @@ class jetty::params (
   $home = "/home/ubuntu",
   $repository_path = "/home/ubuntu/repo",
   $app_name = "jetty",
-  $port = 8000) {
+  $port = 5000,
+  $concurrency = "web=1") {
 }

@@ -1,6 +1,12 @@
-class mongodb::config {
-
-  require mongodb::params
+class mongodb::config (
+  $port = "27017",
+  $bind = "127.0.0.1",
+  $username = "",
+  $password = "", 
+  $replSet = "",
+  $members = [],
+  $ulimit_nofile = "1024",
+) {
   
   # upstart conf file
   file { "/etc/init/mongodb.conf":
@@ -15,5 +21,5 @@ class mongodb::config {
     mode => "0644",
     notify => Service["mongodb"],
   }
-    
+  
 }

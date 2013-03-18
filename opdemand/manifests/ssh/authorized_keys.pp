@@ -4,7 +4,7 @@ class opdemand::ssh::authorized_keys {
   require opdemand::common
   require opdemand::ssh::dirs
   
-  $keys = hiera("server/ssh_authorized_keys")
+  $keys = hiera("SSH_AUTHORIZED_KEYS")
   
   # add a key for each in the list
   add { $keys: }

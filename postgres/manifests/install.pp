@@ -1,7 +1,5 @@
 class postgres::install {
   
-  require postgres::params
-
   package { "postgresql":
     ensure => latest,
   }

@@ -5,5 +5,6 @@ class python::params (
   $repository_path = "/home/ubuntu/repo",
   $app_name = "python",
   $num_listeners = 1,
-  $port = 8000) {
+  $port = 5000,
+  $concurrency = "web=1") {
 }

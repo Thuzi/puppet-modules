@@ -1,3 +1,18 @@
 [httpd]
-port = <%= scope.lookupvar("couchdb::params::port") %>
-bind_address = <%= scope.lookupvar("couchdb::params::bind") %>
+port = <%= @port %>
+bind_address = <%= @bind %>
+
+# override socket options to help performance
+socket_options = [{recbuf, 262144}, {sndbuf, 262144}, {nodelay, true}]
+
+<% if @username.length > 0 -%>
+[couch_httpd_auth]
+require_valid_user = true
+
+[admins]
+<%= @username %> = <%= @password %>
+<% end %>
+
+[native_query_servers]
+# enable erlang view server
+erlang = {couch_native_process, start_link, []}

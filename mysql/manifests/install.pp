@@ -1,7 +1,5 @@
 class mysql::install {
   
-  require mysql::params
-
   package { "mysql-server":
     ensure => latest,
   }

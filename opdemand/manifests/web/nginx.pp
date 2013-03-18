@@ -5,12 +5,12 @@ class opdemand::web::nginx {
   # initialize dynamic parameters
   class {"nginx::params":
     # nginx params
-    template_name => hiera("nginx/template_name", "default"),
-    public_root => hiera("nginx/public_root", "/home/ubuntu/repo/public"),
+    template_name => hiera("NGINX_TEMPLATE_NAME", "default"),
+    public_root => hiera("NGINX_PUBLIC_ROOT", "/home/ubuntu/repo/public"),
     # application params
-    app_name => hiera("application/name", "nginx"),
-    start_port => hiera("application/port", "5000"),
-    num_listeners => hiera("application/listeners", 1),
+    app_name => hiera("APPLICATION_NAME", "nginx"),
+    start_port => hiera("APPLICATION_PORT", "5000"),
+    num_listeners => hiera("APPLICATION_LISTENERS", 1),
   }
 
   # include relevant classes

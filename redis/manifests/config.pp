@@ -1,6 +1,7 @@
-class redis::config {
-  
-  require redis::params
+class redis::config (
+  $port = "6379",
+  $bind = "127.0.0.1",
+  $password = "") {
   
   file {"/etc/redis/redis.conf":
     owner => "root",

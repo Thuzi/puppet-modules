@@ -12,15 +12,4 @@ class opdemand::inputs {
     ensure => present
   }
   
-  exec {"export":
-    cwd => $opdemand::inputs::exec_path,
-    command => "/usr/local/bin/opdemand-export",
-    path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
-    user => "root",
-    group => "root",
-    require => File[$json_path],
-    # trigger on change to inputs.json
-    subscribe => File[$json_path],
-  }
-  
 }

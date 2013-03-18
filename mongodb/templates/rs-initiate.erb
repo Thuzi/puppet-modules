@@ -1,0 +1,1 @@
+mongo --eval 'printjson(rs.initiate({"_id" : "<%= replSet %>","members" : [<% @members.each_with_index do |member, index| %>{ "_id" : <%= index %>, "host" : "<%= member %>" }<% if index != @members.length-1 %>,<% end %><% end %>]}))'

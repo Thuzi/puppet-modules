@@ -11,7 +11,7 @@ stop on runlevel [06]
 
 # http://www.mongodb.org/display/DOCS/Too+Many+Open+Files
 # MongoDB has a hard limit of 20k connections
-limit nofile <%= scope.lookupvar("mongodb::params::ulimit_nofile") %> <%= scope.lookupvar("mongodb::params::ulimit_nofile") %>
+limit nofile <%= ulimit_nofile %> <%= ulimit_nofile %>
 
 script
   ENABLE_MONGODB="yes"

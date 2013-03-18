@@ -4,7 +4,7 @@ class opdemand::ssh::known_hosts {
   require opdemand::common   
   require opdemand::ssh::dirs
   
-  $host_fingerprints = hiera("server/ssh_known_hosts")
+  $host_fingerprints = hiera("SSH_KNOWN_HOSTS")
   
   # add to root known_hosts
   file { "/root/.ssh/known_hosts":

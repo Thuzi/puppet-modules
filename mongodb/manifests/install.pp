@@ -18,9 +18,9 @@
 #  }
 #
 
-class mongodb::install {
+$repository = "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen"
 
-  require mongodb::params
+class mongodb::install {
   
   if !defined(Package["python-software-properties"]) {
     package { "python-software-properties":
@@ -30,7 +30,7 @@ class mongodb::install {
 
   exec { "10gen-apt-repo":
     path => "/bin:/usr/bin",
-    command => "echo '${mongodb::params::repository}' >> /etc/apt/sources.list",
+    command => "echo '${repository}' >> /etc/apt/sources.list",
     unless => "cat /etc/apt/sources.list | grep 10gen",
     require => Package["python-software-properties"],
   }
@@ -49,7 +49,7 @@ class mongodb::install {
     require => Exec["10gen-apt-key"],
   }
 
-  package { $mongodb::params::package:
+  package { "mongodb":
     ensure => installed,
     require => Exec["update-apt"],
   }

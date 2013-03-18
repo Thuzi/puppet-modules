@@ -12,7 +12,7 @@ logpath=/var/log/mongodb/mongodb.log
 
 logappend=true
 
-port = <%= scope.lookupvar("mongodb::params::port") %>
+port = <%= port %>
 
 # Disables write-ahead journaling
 # nojournal = true
@@ -83,4 +83,7 @@ port = <%= scope.lookupvar("mongodb::params::port") %>
 #source = slave.example.com
 
 # in replica set configuration, specify the name of the replica set
-# replSet = setname 
+# replSet = setname
+<% if @replSet.length > 0 %>
+replSet = <%= @replSet %><% if @members.length > 0 %>/<% for @member in @members %><%= @member %>,<% end %><% end %>
+<% end %>

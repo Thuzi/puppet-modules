@@ -1,6 +1,10 @@
-class mysql::config {
-
-  require mysql::params
+class mysql::config (
+  $port = "3306",
+  $bind = "127.0.0.1",
+  $username = "",
+  $password = "",
+  $db_name = "",
+){
   
   file {"/etc/mysql/my.cnf":
     content => template("mysql/my.cnf.erb"),
@@ -10,14 +14,18 @@ class mysql::config {
     require => Class["Mysql::Install"],
   }
 
-  # create database user
-  mysql::createuser{ $mysql::params::username:
-    passwd => $mysql::params::password,
-  } ->
+  # only create a user and database if all 3 variables were provided
+  if $username and $password and $db_name {
   
-  # create separate database for this user
-  mysql::createdb{ $mysql::params::username:
-    owner => $mysql::params::username,
+	  # create database user
+	  mysql::createuser{ $username:
+	    passwd => $password,
+	  } ->
+	  
+	  # create separate database for this user
+	  mysql::createdb{ $db_name:
+	    owner => $username,
+	  }
   }
   
 }
