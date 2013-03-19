@@ -1,13 +1,12 @@
-class nginx::config {
-  
-  # local variables
-  $app_name = $nginx::params::app_name
-  $num_listeners = $nginx::params::num_listeners
-  $template_name = $nginx::params::template_name
-  $public_root = $nginx::params::public_root
-  $server_name = $nginx::params::server_name
-  $access_port = $nginx::params::access_port
-  $start_port = $nginx::params::start_port
+class nginx::config (
+  $template_name = "default",
+  $public_root = "/home/ubuntu/repo/public",
+  $server_name = $ec2_public_hostname,
+  $nginx_port = 80,
+  $app_name = "app",  
+  $app_port = 5000,
+  $app_listeners = 1,
+){
   
   # install sites-enabled (skip sites-available for now)
   file {"/etc/nginx/sites-enabled/$app_name":
@@ -24,6 +23,13 @@ class nginx::config {
   file {"/etc/nginx/sites-enabled/default":
     ensure => absent,
     require => Class[Nginx::Install],
-  }  
+  }
+
+  # ensure legacy site is removed
+  $legacy_name = hiera("APPLICATION_NAME", "nginx")
+  file {"/etc/nginx/sites-enabled/$legacy_name":
+    ensure => absent,
+    require => Class[Nginx::Install],
+  }
   
 }

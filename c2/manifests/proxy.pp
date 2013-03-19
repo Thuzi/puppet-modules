@@ -5,7 +5,7 @@ class c2::proxy (
 ) {
     
   $node_ppa = "ppa:chris-lea/node.js"
-  $packages = [ "nodejs", "npm" ]
+  $packages = [ "nodejs" ] # npm should be included in v0.10
   
   # install ppa with precompiled node
   apt::ppa {$node_ppa:}

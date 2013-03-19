@@ -1,0 +1,2 @@
+#!/bin/sh
+sudo -u ubuntu -i /bin/bash -c "cd <%= @repository_path %> && source venv/bin/activate && c2-check-subscriptions" >/var/log/c2/subscription.log 2>&1

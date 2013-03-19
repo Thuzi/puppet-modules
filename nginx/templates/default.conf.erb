@@ -1,12 +1,12 @@
 # define upstream for our app listeners
 upstream listeners {
-    <% Integer(num_listeners).times do |i| %>server localhost:<%= String(start_port)[0..-2] %><%= i %>;<% end %>
+    <% Integer(app_listeners).times do |i| %>server localhost:<%= Integer( Integer(app_port) + i) %>;<% end %>
 }
 
 server {
     
     # base server config
-    listen <%= access_port %> default;
+    listen <%= nginx_port %> default;
     server_name <%= server_name %>;
 
     # log config
