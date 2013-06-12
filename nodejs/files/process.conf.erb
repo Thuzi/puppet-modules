@@ -7,7 +7,7 @@ setgid <%= user %>
 
 script
   . /home/ubuntu/.opdemand
-  export NODE_ENV=<%= mode %>
+  export NODE_ENV=$APPLICATION_MODE
   export PATH=$PATH:<%= engine.directory %>/node_modules/.bin
   export PORT=<%= port %>
   cd <%= engine.directory %>
