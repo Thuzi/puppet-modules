@@ -5,7 +5,7 @@ class nodejs::install {
   $group = "$nodejs::params::group"
   $repository_path = "$nodejs::params::repository_path"
   $upstart_template_path = "/var/cache/opdemand/upstart/$nodejs::params::app_name"
-  $node_ppa = "ppa:chris-lea/node.js-legacy" # should point to 0.8.22
+  $node_ppa = "ppa:chris-lea/node.js"
   
   # define package names
   $nodejs_package = "nodejs"
