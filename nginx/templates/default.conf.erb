@@ -17,6 +17,8 @@ server {
     location /static {
         root <%= public_root %>;
     }
+    
+    client_max_body_size       10m;
 
     # pass all other traffic to the workers
     location / {
