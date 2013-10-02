@@ -9,13 +9,12 @@ class nodejs::install {
   
   # define package names
   $nodejs_package = "nodejs"
-  $npm_package = "npm"
   
   # install ppa with precompiled node
   apt::ppa {$node_ppa:}
     
   # install base nodejs packages
-  $packages = [ $nodejs_package, $npm_package ]
+  $packages = [ $nodejs_package ]
   package { $packages:
     ensure => present,
     require => Apt::Ppa[$node_ppa],
