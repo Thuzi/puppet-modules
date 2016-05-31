@@ -18,7 +18,7 @@ server {
         root <%= public_root %>;
     }
 
-    client_max_body_size       10m;
+    client_max_body_size       30m;
     # pass all other traffic to the workers
     location / {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
