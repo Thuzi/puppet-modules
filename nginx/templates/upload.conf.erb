@@ -18,7 +18,7 @@ server {
         root <%= public_root %>;
     }
     
-    client_max_body_size       30m;
+    client_max_body_size       0;
 
     # pass all other traffic to the workers
     location / {
